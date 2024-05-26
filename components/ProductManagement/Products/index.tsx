@@ -42,6 +42,41 @@ const Products = () => {
     setFirst(event.first);
     setRows(event.rows);
   };
+  interface RowProductProps {
+    id: string;
+    productImage: string;
+    title: string;
+    price: string;
+    category: string;
+    edit?: () => void;
+    remove?: () => void;
+  }
+  const RowProduct = ({ id, productImage, title, price, category }: RowProductProps) => (
+    <section className='product-management__products__table__body__product-card'>
+      <article className='mid'>
+        <Image
+          src='https://upload.wikimedia.org/wikipedia/commons/d/d1/Image_not_available.png'
+          alt='Image'
+          width='150'
+        />
+      </article>
+      <article className='large'>
+        <p>{title}</p>
+      </article>
+      <article className='mid'>
+        <p>{price}</p>
+      </article>
+      <article className='mid'>
+        <p>{category}</p>
+      </article>
+      <article className='mid'>
+        <Tooltip target='.edit' content='Edit' position='bottom' />
+        <i className='pi pi-pencil edit' style={{ fontSize: '1.5rem', color: '#3723c7' }} />
+        <Tooltip target='.remove' content='Remove' position='bottom' />
+        <i className='pi pi-trash remove' style={{ fontSize: '1.5rem', color: '#910c0c' }} />
+      </article>
+    </section>
+  );
 
   return (
     <section className='product-management__products'>
@@ -64,33 +99,41 @@ const Products = () => {
           ))}
         </section>
         <section className='product-management__products__table__body'>
-          <section className='product-management__products__table__body__product-card'>
-            <article className='mid'>
-              <Image
-                src='https://upload.wikimedia.org/wikipedia/commons/d/d1/Image_not_available.png'
-                alt='Image'
-                width='150'
-              />
-            </article>
-            <article className='large'>
-              <p>Product Title</p>
-            </article>
-            <article className='mid'>
-              <p>$120.000</p>
-            </article>
-            <article className='mid'>
-              <p>Sillon</p>
-            </article>
-            <article className='mid'>
-              <Tooltip target='.edit' content='Edit' position='bottom' />
-              <i className='pi pi-pencil edit' style={{ fontSize: '1.5rem', color: '#3723c7' }} />
-              <Tooltip target='.remove' content='Remove' position='bottom' />
-              <i className='pi pi-trash remove' style={{ fontSize: '1.5rem', color: '#910c0c' }} />
-            </article>
-          </section>
-          <section className='product-management__products__table__body__product-card' />
-          <section className='product-management__products__table__body__product-card' />
-          <section className='product-management__products__table__body__product-card' />
+          <RowProduct
+            id='1'
+            productImage='https://upload.wikimedia.org/wikipedia/commons/d/d1/Image_not_available.png'
+            title='Sillon Test'
+            category='Sillon'
+            price='$120.000'
+          />
+          <RowProduct
+            id='1'
+            productImage='https://upload.wikimedia.org/wikipedia/commons/d/d1/Image_not_available.png'
+            title='Sillon Test'
+            category='Sillon'
+            price='$120.000'
+          />
+          <RowProduct
+            id='1'
+            productImage='https://upload.wikimedia.org/wikipedia/commons/d/d1/Image_not_available.png'
+            title='Sillon Test'
+            category='Sillon'
+            price='$120.000'
+          />
+          <RowProduct
+            id='1'
+            productImage='https://upload.wikimedia.org/wikipedia/commons/d/d1/Image_not_available.png'
+            title='Sillon Test'
+            category='Sillon'
+            price='$120.000'
+          />
+          <RowProduct
+            id='1'
+            productImage='https://upload.wikimedia.org/wikipedia/commons/d/d1/Image_not_available.png'
+            title='Sillon Test'
+            category='Sillon'
+            price='$120.000'
+          />
         </section>
         <section className='product-management__products__table__paginator'>
           <Paginator
