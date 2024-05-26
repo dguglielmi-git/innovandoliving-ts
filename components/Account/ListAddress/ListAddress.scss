@@ -1,0 +1,75 @@
+.address {
+  .button-add {
+    margin-top: 20px;
+
+    .button {
+      height: 40px;
+      background-color: $ok-button;
+      color: $white;
+    }
+  }
+}
+
+.box-address {
+  display: flex;
+  margin-top: 40px;
+
+  .card {
+    display: flex;
+    flex-direction: column;
+    border: 1.5px solid rgb(151, 150, 150);
+    border-radius: calc(0.3rem - 1px) calc(0.3rem - 1px) 0 0;
+    -webkit-box-shadow: 0px -2px 8px -4px rgba(61, 64, 255, 1);
+    -moz-box-shadow: 0px -2px 8px -4px rgba(61, 64, 255, 1);
+    box-shadow: 0px -2px 8px -4px rgba(61, 64, 255, 1);
+
+    @media (min-width: $res-mobile) {
+      width: 31rem;
+    }
+
+    @media (max-width: $res-mobile) {
+      width: 21rem;
+    }
+
+    &.active {
+      -webkit-box-shadow: 5px -1px 10px 0px rgba(61, 64, 255, 1);
+      -moz-box-shadow: 5px -1px 10px 0px rgba(61, 64, 255, 1);
+      box-shadow: 5px -1px 10px 0px rgba(61, 64, 255, 1);
+    }
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.5rem 1rem;
+      font-size: 1.4rem;
+      margin-bottom: 0;
+      background-color: rgba(0, 0, 0, 0.03);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+
+      &__options {
+        display: flex;
+        justify-content: flex-end;
+        z-index: 0;
+        margin-left: 5px;
+        margin-bottom: 5px;
+
+        .icon {
+          margin-left: 10px;
+          &:hover {
+            cursor: pointer;
+          }
+        }
+      }
+    }
+
+    .card-body {
+      display: block;
+      padding: 15px;
+
+      font-size: 1.2rem;
+      font-weight: 400;
+      line-height: 1.5;
+      -webkit-text-size-adjust: 100%;
+      -webkit-tap-highlight-color: transparent;
+    }
+  }
+}

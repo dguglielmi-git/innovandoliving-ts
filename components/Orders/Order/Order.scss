@@ -1,0 +1,117 @@
+.order {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+  padding: 10px;
+  padding-top: 25px;
+  background-color: #f0f0f0;
+
+  .order-title {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+
+  .order-table {
+    display: flex;
+    min-width: 70%;
+  }
+
+  .order-detail {
+    display: flex;
+    width: 100%;
+    margin: 10px;
+
+    &__mainbox {
+      &-buttonback {
+        display: flex;
+        align-items: center;
+        height: 30px;
+        margin-bottom: 10px;
+        width: 100px;
+        &:hover {
+          cursor: pointer;
+        }
+      }
+
+      &-timeline {
+        display: flex;
+        width: 320px;
+      }
+
+      &-orderstatus {
+        display: flex;
+        flex-direction: column;
+        margin-top: 15px;
+        h5 {
+          margin-bottom: 20px;
+        }
+
+        &-update {
+          display: flex;
+          margin-bottom: 15px;
+        }
+      }
+      &-items {
+        display: flex;
+        flex-direction: column;
+        padding: 20px;
+        margin-top: 20px;
+        width: 90%;
+
+        &-details {
+          display: flex;
+        }
+
+        &-summary {
+          display: flex;
+        }
+      }
+
+      &-goback {
+        display: flex;
+      }
+
+      &-comments {
+        display: flex;
+        padding: 10px;
+        margin-left: 10px;
+      }
+    }
+  }
+}
+
+.order-combo-status {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+.orders {
+  &__block {
+    padding: 10px;
+    .title {
+      width: max-content;
+      background-color: $black;
+      color: $white;
+      padding: 5px 10px;
+      border-radius: 5px 5px 0 0;
+    }
+
+    .data {
+      margin-top: 10px;
+    }
+  }
+}
+
+.order-locked {
+  display: flex;
+  align-items: center;
+  font-style: italic;
+  color: blueviolet;
+}
+
+.p-red {
+  color: #cd043d;
+}
