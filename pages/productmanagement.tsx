@@ -7,6 +7,7 @@ import { getSortedPlatforms } from '../api/platform';
 import { Product } from '../types/models/Product';
 import { Platform } from '../types/models/Platform';
 import { getPublishedProducts } from '@/api/producto';
+import { size } from 'lodash';
 
 export default function ProductManagement() {
   const [categories, setCategories] = useState<Platform[] | []>([]);
@@ -26,7 +27,7 @@ export default function ProductManagement() {
 
   return (
     <BasicLayout className='queries' style={{ backgroundColor: '#F6F6F6' }}>
-      <ProductManagementTitle />
+      <ProductManagementTitle totalCategories={size(categories).toString()} totalProducts={size(products).toString()} />
       <Category categories={categories} />
       <Products products={products} />
     </BasicLayout>
