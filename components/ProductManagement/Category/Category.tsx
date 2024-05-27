@@ -4,6 +4,7 @@ import { ConfirmDialog, confirmDialog } from 'primereact/confirmdialog';
 import { Toast } from 'primereact/toast';
 import { Button } from 'primereact/button';
 import React, { useRef, useState } from 'react';
+import { Platform } from '@/types/models/Platform';
 
 interface RowCategoryProps {
   id: string;
@@ -28,8 +29,11 @@ const RowCategory = ({ id, label, handleEdit, handleRemove }: RowCategoryProps) 
     </section>
   );
 };
+interface CategoryProps {
+  categories?: Platform[] | [];
+}
 
-const Category: React.FC = () => {
+const Category = ({ categories }: CategoryProps) => {
   const toast = useRef<Toast>(null);
   const [removeDialogVisible, setRemoveDialogVisible] = useState<boolean>(false);
 
@@ -82,22 +86,15 @@ const Category: React.FC = () => {
             </div>
           </div>
           <div className='category-management__mainbox__list__rows'>
-            <RowCategory id='1' label='Category' handleEdit={() => editRow('1')} handleRemove={() => removeRow('1')} />
-            <RowCategory id='1' label='Category' handleEdit={() => editRow('1')} handleRemove={() => removeRow('1')} />
-            <RowCategory id='1' label='Category' handleEdit={() => editRow('1')} handleRemove={() => removeRow('1')} />
-            <RowCategory id='1' label='Category' handleEdit={() => editRow('1')} handleRemove={() => removeRow('1')} />
-            <RowCategory id='1' label='Category' handleEdit={() => editRow('1')} handleRemove={() => removeRow('1')} />
-            <RowCategory id='1' label='Category' handleEdit={() => editRow('1')} handleRemove={() => removeRow('1')} />
-            <RowCategory id='1' label='Category' handleEdit={() => editRow('1')} handleRemove={() => removeRow('1')} />
-            <RowCategory id='1' label='Category' handleEdit={() => editRow('1')} handleRemove={() => removeRow('1')} />
-            <RowCategory id='1' label='Category' handleEdit={() => editRow('1')} handleRemove={() => removeRow('1')} />
-            <RowCategory id='1' label='Category' handleEdit={() => editRow('1')} handleRemove={() => removeRow('1')} />
-            <RowCategory id='1' label='Category' handleEdit={() => editRow('1')} handleRemove={() => removeRow('1')} />
-            <RowCategory id='1' label='Category' handleEdit={() => editRow('1')} handleRemove={() => removeRow('1')} />
-            <RowCategory id='1' label='Category' handleEdit={() => editRow('1')} handleRemove={() => removeRow('1')} />
-            <RowCategory id='1' label='Category' handleEdit={() => editRow('1')} handleRemove={() => removeRow('1')} />
-            <RowCategory id='1' label='Category' handleEdit={() => editRow('1')} handleRemove={() => removeRow('1')} />
-            <RowCategory id='1' label='Category' handleEdit={() => editRow('1')} handleRemove={() => removeRow('1')} />
+            {categories?.map((category) => (
+              <RowCategory
+                key={category._id}
+                id={category._id}
+                label={category.title}
+                handleEdit={() => editRow(category._id)}
+                handleRemove={() => removeRow(category._id)}
+              />
+            ))}
           </div>
         </div>
         <div className='category-management__mainbox__options'>

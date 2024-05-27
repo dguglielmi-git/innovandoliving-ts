@@ -5,6 +5,8 @@ import { InputText } from 'primereact/inputtext';
 import { Image } from 'primereact/image';
 import { Paginator, PaginatorPageChangeEvent } from 'primereact/paginator';
 import { Tooltip } from 'primereact/tooltip';
+import { Product } from '@/types/models/Product';
+import { numToDollar } from '@/utils/util';
 
 const tableHeaders = [
   {
@@ -33,8 +35,11 @@ const tableHeaders = [
     colSize: 'mid',
   },
 ];
+interface ProductsProps {
+  products?: Product[] | [];
+}
 
-const Products = () => {
+const Products = ({ products }: ProductsProps) => {
   const [first, setFirst] = useState<number>(0);
   const [rows, setRows] = useState<number>(10);
 
@@ -53,18 +58,14 @@ const Products = () => {
   }
   const RowProduct = ({ id, productImage, title, price, category }: RowProductProps) => (
     <section className='product-management__products__table__body__product-card'>
-      <article className='mid'>
-        <Image
-          src='https://upload.wikimedia.org/wikipedia/commons/d/d1/Image_not_available.png'
-          alt='Image'
-          width='150'
-        />
+      <article className='mid image'>
+        <Image src={productImage} alt='Image' width='100' height='70' />
       </article>
-      <article className='large'>
+      <article className='large title'>
         <p>{title}</p>
       </article>
       <article className='mid'>
-        <p>{price}</p>
+        <p>{numToDollar(price)}</p>
       </article>
       <article className='mid'>
         <p>{category}</p>
@@ -99,41 +100,16 @@ const Products = () => {
           ))}
         </section>
         <section className='product-management__products__table__body'>
-          <RowProduct
-            id='1'
-            productImage='https://upload.wikimedia.org/wikipedia/commons/d/d1/Image_not_available.png'
-            title='Sillon Test'
-            category='Sillon'
-            price='$120.000'
-          />
-          <RowProduct
-            id='1'
-            productImage='https://upload.wikimedia.org/wikipedia/commons/d/d1/Image_not_available.png'
-            title='Sillon Test'
-            category='Sillon'
-            price='$120.000'
-          />
-          <RowProduct
-            id='1'
-            productImage='https://upload.wikimedia.org/wikipedia/commons/d/d1/Image_not_available.png'
-            title='Sillon Test'
-            category='Sillon'
-            price='$120.000'
-          />
-          <RowProduct
-            id='1'
-            productImage='https://upload.wikimedia.org/wikipedia/commons/d/d1/Image_not_available.png'
-            title='Sillon Test'
-            category='Sillon'
-            price='$120.000'
-          />
-          <RowProduct
-            id='1'
-            productImage='https://upload.wikimedia.org/wikipedia/commons/d/d1/Image_not_available.png'
-            title='Sillon Test'
-            category='Sillon'
-            price='$120.000'
-          />
+          {products?.map((product) => (
+            <RowProduct
+              key={product._id}
+              id={product._id || product.title}
+              productImage={product.url}
+              title={product.title}
+              category={product.platform.title}
+              price={product.price.$numberDecimal}
+            />
+          ))}
         </section>
         <section className='product-management__products__table__paginator'>
           <Paginator

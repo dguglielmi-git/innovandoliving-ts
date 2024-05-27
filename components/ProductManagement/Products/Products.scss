@@ -70,6 +70,7 @@ $standard-browser-res: 1000px;
             display: flex;
             margin-top: 2rem;
             margin-bottom: 1rem;
+            margin-left: 2rem;
 
             p {
                 color: $ash-gray;
@@ -101,9 +102,12 @@ $standard-browser-res: 1000px;
                 box-shadow: 0px 3px 9px rgba(0, 0, 0, 0.25);
                 margin-bottom: 1rem;
 
-                &:hover {
-                    box-shadow: 0px 3px 9px rgba(86, 6, 6, 0.25);
-                    cursor: pointer;
+                .image {
+                    margin: 0.5rem;
+                }
+
+                .title {
+                    margin-left: 1rem;
                 }
 
                 transition: all ease 300ms;
