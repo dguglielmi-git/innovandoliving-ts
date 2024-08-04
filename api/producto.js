@@ -17,10 +17,35 @@ export async function getPublishedProducts (limit) {
     }
 
     const url = `${getBackendURL()}/publishedProducts?${DEFAULT_SORT_PRODUCT_ITEMS}${limit}`
-    const result = await fetchRetryParams(url, params);
-    return await result.json();
+    const result = await fetchRetryParams(url, params)
+    return await result.json()
   } catch (error) {
     console.error(`getPublishedProducts error: ${error}`)
+    return []
+  }
+}
+
+export async function getAllProducts (logout) {
+  const token = getToken()
+
+  if (!token) {
+    logout()
+  }
+
+  try {
+    const params = {
+      headers: {
+        'Content-Type': 'application/json',
+        'x-token': token,
+        'Content-Type': 'application/json'
+      }
+    }
+
+    const url = `${getBackendURL()}/getAllProducts`
+    const result = await fetchRetryParams(url, params)
+    return await result.json()
+  } catch (error) {
+    console.error(`getAllProducts error: ${error}`)
     return []
   }
 }

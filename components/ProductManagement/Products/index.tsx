@@ -37,9 +37,10 @@ const tableHeaders = [
 ];
 interface ProductsProps {
   products?: Product[] | [];
+  updateProductList: () => void;
 }
 
-const Products = ({ products }: ProductsProps) => {
+const Products = ({ products, updateProductList }: ProductsProps) => {
   const [first, setFirst] = useState<number>(0);
   const [rows, setRows] = useState<number>(10);
 

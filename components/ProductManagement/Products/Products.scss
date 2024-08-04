@@ -112,6 +112,10 @@ $standard-browser-res: 1000px;
 
                 transition: all ease 300ms;
 
+                i:hover {
+                    cursor:pointer;
+                }
+
                 p {
                     font-family: Poppins;
                     font-style: normal;

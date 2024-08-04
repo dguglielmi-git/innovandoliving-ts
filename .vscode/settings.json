@@ -2,5 +2,6 @@
     "workbench.colorCustomizations": {
         "activityBar.background": "#ab463f",
         "titleBar.inactiveBackground": "#ab463f",
-    }
+    },
+    "CodeGPT.apiKey": "CodeGPT Plus Beta"
 }

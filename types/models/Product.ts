@@ -8,7 +8,6 @@ export interface Product {
   releaseDate: string;
   updateAd: string;
   created_by: string;
-  poster: string;
   updated_by: string;
   url: string;
   price: {
