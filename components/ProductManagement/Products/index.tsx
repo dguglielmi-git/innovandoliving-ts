@@ -38,9 +38,11 @@ const tableHeaders = [
 interface ProductsProps {
   products?: Product[] | [];
   updateProductList: () => void;
+  search: string;
+  updateSearch: (value: string) => void;
 }
 
-const Products = ({ products, updateProductList }: ProductsProps) => {
+const Products = ({ products, updateProductList, search, updateSearch }: ProductsProps) => {
   const [first, setFirst] = useState<number>(0);
   const [rows, setRows] = useState<number>(10);
 
@@ -88,7 +90,7 @@ const Products = ({ products, updateProductList }: ProductsProps) => {
       <section className='product-management__products__search'>
         <IconField iconPosition='left'>
           <InputIcon className='pi pi-search'> </InputIcon>
-          <InputText v-model='value1' placeholder='Search' />
+          <InputText v-model={search} onChange={(e) => updateSearch(e.target.value)} placeholder='Search' />
         </IconField>
       </section>
 

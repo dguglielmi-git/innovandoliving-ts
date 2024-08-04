@@ -16,6 +16,18 @@ export default function ProductManagement() {
   const [loading, setLoading] = useState<boolean>(false);
   const [categories, setCategories] = useState<Platform[] | []>([]);
   const [products, setProducts] = useState<Product[] | []>([]);
+  const [searchProduct, setSearchProduct] = useState<string>('');
+  const [paginatedProducts, setPaginatedProducts] = useState<Product[] | []>([]);
+
+  useEffect(() => {
+    if (searchProduct !== '') {
+      setPaginatedProducts(
+        products.filter((product) => product.title.toLowerCase().includes(searchProduct.toLowerCase()))
+      );
+    } else {
+      setPaginatedProducts(products);
+    }
+  }, [products, searchProduct]);
 
   const getData = useCallback(async () => {
     try {
@@ -28,6 +40,8 @@ export default function ProductManagement() {
       setLoading(false);
     }
   }, []);
+
+  const updateSearchProduct = (value: string) => setSearchProduct(value);
 
   const updateCategoryList = async () => {
     const catResult = await getSortedPlatforms();
@@ -54,7 +68,12 @@ export default function ProductManagement() {
             totalProducts={size(products).toString()}
           />
           <Category categories={categories} updateCategories={updateCategoryList} />
-          <Products products={products} updateProductList={updateProductList}/>
+          <Products
+            products={paginatedProducts}
+            updateProductList={updateProductList}
+            search={searchProduct}
+            updateSearch={updateSearchProduct}
+          />
         </>
       )}
     </BasicLayout>
