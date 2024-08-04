@@ -180,7 +180,7 @@ const Products = ({
           <Paginator
             first={first}
             rows={rows}
-            totalRecords={120}
+            totalRecords={products ? products.length : 0}
             rowsPerPageOptions={[10, 50, 100]}
             onPageChange={onPageChange}
           />
