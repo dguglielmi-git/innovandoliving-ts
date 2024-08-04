@@ -1,11 +1,11 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { IconField } from 'primereact/iconfield';
 import { InputIcon } from 'primereact/inputicon';
 import { InputText } from 'primereact/inputtext';
 import { Toast } from 'primereact/toast';
 import { Image } from 'primereact/image';
 import { ConfirmDialogProps, ConfirmDialogReturn } from 'primereact/confirmdialog';
-import { Paginator, PaginatorPageChangeEvent } from 'primereact/paginator';
+import { Paginator, PaginatorFirstPageLinkOptions, PaginatorPageChangeEvent } from 'primereact/paginator';
 import { Tooltip } from 'primereact/tooltip';
 import { Product } from '@/types/models/Product';
 import { numToDollar } from '@/utils/util';
@@ -65,6 +65,7 @@ const Products = ({
     setFirst(event.first);
     setRows(event.rows);
   };
+
   interface RowProductProps {
     id: string;
     productImage: string;
@@ -143,6 +144,11 @@ const Products = ({
     </section>
   );
 
+  const paginatedProducts = useMemo(() => {
+    return products?.slice(first, first + rows);
+  }, [first]);
+
+
   return (
     <section className='product-management__products'>
       <article className='product-management__products__title'>
@@ -164,7 +170,7 @@ const Products = ({
           ))}
         </section>
         <section className='product-management__products__table__body'>
-          {products?.map((product) => (
+          {paginatedProducts?.map((product) => (
             <RowProduct
               key={product._id}
               id={product._id || product.title}
