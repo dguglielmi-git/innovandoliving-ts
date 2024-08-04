@@ -1,6 +1,6 @@
 import { Divider } from 'primereact/divider';
 import { Tooltip } from 'primereact/tooltip';
-import { ConfirmDialog, confirmDialog } from 'primereact/confirmdialog';
+import { ConfirmDialogProps, ConfirmDialogReturn } from 'primereact/confirmdialog';
 import { Toast } from 'primereact/toast';
 import { Button } from 'primereact/button';
 import React, { useRef, useState } from 'react';
@@ -35,12 +35,13 @@ const RowCategory = ({ id, label, handleRemove }: RowCategoryProps) => {
 interface CategoryProps {
   categories?: Platform[] | [];
   updateCategories: () => void;
+  confirmDialog: (props: ConfirmDialogProps) => ConfirmDialogReturn;
+  closeDeleteDialog: ()=> void
 }
 
-const Category = ({ categories, updateCategories }: CategoryProps) => {
+const Category = ({ categories, updateCategories, confirmDialog, closeDeleteDialog }: CategoryProps) => {
   const { logout } = useAuth();
   const toast = useRef<Toast>(null);
-  const [removeDialogVisible, setRemoveDialogVisible] = useState<boolean>(false);
   const [isModalAddCategoryVisible, setIsModalAddCategoryVisible] = useState<boolean>(false);
   const [newCategory, setNewCategory] = useState<string>('');
 
@@ -68,19 +69,18 @@ const Category = ({ categories, updateCategories }: CategoryProps) => {
       console.error(error);
       showToast('error', 'Error', 'Error trying to remove the selected category.');
     } finally {
-      setRemoveDialogVisible(false);
+      closeDeleteDialog();
     }
   };
 
   const rejectRemove = () => {
     toast.current?.show({ severity: 'warn', summary: 'Rejected', detail: 'Operation Canceled.', life: 3000 });
-    setRemoveDialogVisible(false);
+    closeDeleteDialog()
   };
 
   const removeRow = (id: string) => {
-    console.log('remove', id);
     confirmDialog({
-      message: 'Do you want to delete this record?',
+      message: 'Do you want to delete this category?',
       header: 'Delete Confirmation',
       icon: 'pi pi-info-circle',
       defaultFocus: 'reject',
@@ -91,7 +91,6 @@ const Category = ({ categories, updateCategories }: CategoryProps) => {
   };
 
   const confirmAddCategory = async () => {
-    console.log(newCategory);
     const newCategoryToSave = {
       title: newCategory,
       position: 1,
@@ -117,7 +116,6 @@ const Category = ({ categories, updateCategories }: CategoryProps) => {
   return (
     <div className='category-management'>
       <Toast ref={toast} />
-      <ConfirmDialog visible={removeDialogVisible} />
       <div className='category-management__mainbox'>
         <div className='category-management__mainbox__title'>
           <h2 className='poppins-600-regular'>Categories</h2>

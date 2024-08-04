@@ -1,12 +1,16 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { IconField } from 'primereact/iconfield';
 import { InputIcon } from 'primereact/inputicon';
 import { InputText } from 'primereact/inputtext';
+import { Toast } from 'primereact/toast';
 import { Image } from 'primereact/image';
+import { ConfirmDialogProps, ConfirmDialogReturn } from 'primereact/confirmdialog';
 import { Paginator, PaginatorPageChangeEvent } from 'primereact/paginator';
 import { Tooltip } from 'primereact/tooltip';
 import { Product } from '@/types/models/Product';
 import { numToDollar } from '@/utils/util';
+import useAuth from '@/hooks/useAuth';
+import { deleteProduct } from '@/api/producto';
 
 const tableHeaders = [
   {
@@ -40,9 +44,20 @@ interface ProductsProps {
   updateProductList: () => void;
   search: string;
   updateSearch: (value: string) => void;
+  confirmDialog: (props: ConfirmDialogProps) => ConfirmDialogReturn;
+  closeDeleteDialog: () => void;
 }
 
-const Products = ({ products, updateProductList, search, updateSearch }: ProductsProps) => {
+const Products = ({
+  products,
+  updateProductList,
+  search,
+  updateSearch,
+  confirmDialog,
+  closeDeleteDialog,
+}: ProductsProps) => {
+  const toast = useRef<Toast>(null);
+  const { logout } = useAuth();
   const [first, setFirst] = useState<number>(0);
   const [rows, setRows] = useState<number>(10);
 
@@ -59,7 +74,53 @@ const Products = ({ products, updateProductList, search, updateSearch }: Product
     edit?: () => void;
     remove?: () => void;
   }
-  const RowProduct = ({ id, productImage, title, price, category }: RowProductProps) => (
+
+  const showToast = (
+    severity: 'success' | 'info' | 'warn' | 'error' | undefined,
+    summary: React.ReactNode | undefined,
+    detail: React.ReactNode | undefined
+  ) =>
+    toast.current?.show({
+      severity,
+      summary,
+      detail,
+      life: 3000,
+    });
+
+  const acceptRemove = async (id: string) => {
+    try {
+      const removeProduct = await deleteProduct(id, logout);
+
+      if (removeProduct) {
+        showToast('info', 'Confirmed', 'The selected product has been removed.');
+        updateProductList();
+      }
+    } catch (error) {
+      console.error(error);
+      showToast('error', 'Error', 'Error trying to remove the selected product.');
+    } finally {
+      closeDeleteDialog();
+    }
+  };
+
+  const rejectRemove = () => {
+    toast.current?.show({ severity: 'warn', summary: 'Rejected', detail: 'Operation Canceled.', life: 3000 });
+    closeDeleteDialog();
+  };
+
+  const removeRow = (id: string) => {
+    confirmDialog({
+      message: 'Do you want to delete this product?',
+      header: 'Delete Confirmation',
+      icon: 'pi pi-info-circle',
+      defaultFocus: 'reject',
+      acceptClassName: 'p-button-danger',
+      accept: () => acceptRemove(id),
+      reject: rejectRemove,
+    });
+  };
+
+  const RowProduct = ({ id, productImage, title, price, category, remove }: RowProductProps) => (
     <section className='product-management__products__table__body__product-card'>
       <article className='mid image'>
         <Image src={productImage} alt='Image' width='100' height='70' />
@@ -77,7 +138,7 @@ const Products = ({ products, updateProductList, search, updateSearch }: Product
         <Tooltip target='.edit' content='Edit' position='bottom' />
         <i className='pi pi-pencil edit' style={{ fontSize: '1.5rem', color: '#3723c7' }} />
         <Tooltip target='.remove' content='Remove' position='bottom' />
-        <i className='pi pi-trash remove' style={{ fontSize: '1.5rem', color: '#910c0c' }} />
+        <i className='pi pi-trash remove' style={{ fontSize: '1.5rem', color: '#910c0c' }} onClick={remove} />
       </article>
     </section>
   );
@@ -111,6 +172,7 @@ const Products = ({ products, updateProductList, search, updateSearch }: Product
               title={product.title}
               category={product.platform.title}
               price={product.price.$numberDecimal}
+              remove={() => removeRow(product._id ?? '')}
             />
           ))}
         </section>

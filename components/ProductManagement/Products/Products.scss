@@ -104,6 +104,7 @@ $standard-browser-res: 1000px;
 
                 .image {
                     margin: 0.5rem;
+                    min-width: 100px;
                 }
 
                 .title {
@@ -113,11 +114,12 @@ $standard-browser-res: 1000px;
                 transition: all ease 300ms;
 
                 i:hover {
-                    cursor:pointer;
+                    cursor: pointer;
+                    transform: scale(1.2);
                 }
 
                 p {
-                    font-family: Poppins;
+                    font-family: $font-poppins-regular;
                     font-style: normal;
                     font-weight: 400;
                     font-size: 14px;
@@ -135,12 +137,7 @@ $standard-browser-res: 1000px;
 
                 i {
                     margin-right: 2rem;
-
-                    &:hover {
-                        transform: scale(1.2)
-                    }
                 }
-
             }
         }
 
@@ -149,6 +146,8 @@ $standard-browser-res: 1000px;
             justify-content: center;
             margin-top: 1rem;
             height: 69px;
+            border-radius: 5px;
+            box-shadow: 0px 3px 9px rgba(0, 0, 0, 0.25);
 
             @media (max-width: $standard-browser-res) {
                 width: 80%;
@@ -157,9 +156,6 @@ $standard-browser-res: 1000px;
             @media (min-width: $standard-browser-res) {
                 width: 90%;
             }
-
-            border-radius: 5px;
-            box-shadow: 0px 3px 9px rgba(0, 0, 0, 0.25);
 
             button {
 

@@ -10,6 +10,7 @@ import { getAllProducts } from '@/api/producto';
 import { size } from 'lodash';
 import useAuth from '@/hooks/useAuth';
 import BasicLoading from '@/components/BasicLoading/BasicLoading';
+import { ConfirmDialog, confirmDialog } from 'primereact/confirmdialog';
 
 export default function ProductManagement() {
   const { logout } = useAuth();
@@ -18,6 +19,7 @@ export default function ProductManagement() {
   const [products, setProducts] = useState<Product[] | []>([]);
   const [searchProduct, setSearchProduct] = useState<string>('');
   const [paginatedProducts, setPaginatedProducts] = useState<Product[] | []>([]);
+  const [removeDialogVisible, setRemoveDialogVisible] = useState<boolean>(false);
 
   useEffect(() => {
     if (searchProduct !== '') {
@@ -57,22 +59,32 @@ export default function ProductManagement() {
     getData();
   }, [getData]);
 
+  const closeDeleteDialog = () => setRemoveDialogVisible(false);
+
   return (
     <BasicLayout className='queries' style={{ backgroundColor: '#F6F6F6' }}>
       {loading ? (
         <BasicLoading />
       ) : (
         <>
+          <ConfirmDialog visible={removeDialogVisible} />
           <ProductManagementTitle
             totalCategories={size(categories).toString()}
             totalProducts={size(products).toString()}
           />
-          <Category categories={categories} updateCategories={updateCategoryList} />
+          <Category
+            categories={categories}
+            updateCategories={updateCategoryList}
+            confirmDialog={confirmDialog}
+            closeDeleteDialog={closeDeleteDialog}
+          />
           <Products
             products={paginatedProducts}
             updateProductList={updateProductList}
             search={searchProduct}
             updateSearch={updateSearchProduct}
+            confirmDialog={confirmDialog}
+            closeDeleteDialog={closeDeleteDialog}
           />
         </>
       )}

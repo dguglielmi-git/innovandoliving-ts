@@ -81,7 +81,6 @@ export async function getProductByID (idProduct) {
     const resultJson = await result.json()
     console.log(resultJson)
     return resultJson
-    //return await result.json();
   } catch (error) {
     console.log(error)
     return null
@@ -222,5 +221,30 @@ export async function getUnreadMsgs () {
   } catch (error) {
     console.log(error)
     return null
+  }
+}
+
+export async function deleteProduct (idProduct, logout) {
+  try {
+    const token = getToken()
+
+    if (!token) {
+      logout()
+    }
+
+    const url = `${process.env.NEXT_PUBLIC_URL_MERCADOPAGO_BACKEND}/deleteProduct/${idProduct}`
+    const params = {
+      method: 'DELETE',
+      headers: {
+        'x-token': token,
+        'Content-Type': 'application/json'
+      }
+    }
+    await fetchRetryParams(url, params)
+
+    return true
+  } catch (error) {
+    console.error(error)
+    return false
   }
 }
