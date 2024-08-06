@@ -33,7 +33,6 @@ export default function Home() {
       )}
       {size(productos) > 0 && (
         <>
-        <h1>Hay productos</h1>
           <h2>{t("indexMainTitle")}</h2>
           <ListProductos productos={productos} />
         </>

@@ -263,6 +263,45 @@ export const TRANSLATION_IT = {
   productGalleryLabel: 'Galleria:',
   productQuestions: 'Domande',
 
+  /* Product Management */
+  pmCategoryRemovedSuccessfully: 'Il record selezionato è stato rimosso.',
+  pmErrorRemovingCategory:
+    'Errore durante il tentativo di rimozione della categoria selezionata.',
+  pmOperationCancelCategory: 'Operazione annullata',
+  pmRemoveCategoryDialog: 'Vuoi eliminare questa categoria?',
+  pmRemoveCategoryDialogTitle: 'Conferma eliminazione',
+  pmCategoryAddedSuccessfully:
+    'La nuova categoria è stata aggiunta con successo.',
+  pmCategoryTitleAddedSuccessfully: 'Confermato',
+  pmCategoryTitleAddError: 'Errore',
+  pmCategoryTitleAddRejected: 'Rifiutato',
+  pmCategoryTitle: 'Categorie',
+  pmCategoryLabelTitle: 'Titolo',
+  pmCategoryLabelOptions: 'Opzioni',
+  pmCategoryLabelButtonAdd: 'Aggiungi',
+  pmCategoryUpdateModalTitle: 'Aggiungi Categoria',
+  pmCategoryUpdateModalCancelButton: 'Annulla',
+  pmCategoryRemoveTooltip: 'Rimuovi',
+  pmAddCategoryModalMsg:
+    'Digita il nome della nuova categoria e poi premi il pulsante `Aggiungi`.',
+  pmAddCategoryModalPlaceholder: 'Nuova Categoria',
+  pmProdManagementTitle: 'Gestione dei Prodotti',
+  pmProdManagementTotalCategories: 'Totale Categorie',
+  pmProdManagementtotalProducts: 'Totale Prodotti',
+  pmAcceptRemoveProductTitle: 'Confermato',
+  pmProductRemovedSuccessfully: 'Il prodotto selezionato è stato rimosso.',
+  pmProductTitleError: 'Errore',
+  pmProductTitleRejected: 'Rifiutato',
+  pmProductErrorRemoving:
+    'Errore durante il tentativo di rimozione del prodotto selezionato.',
+  pmProductOperationCancel: 'Operazione annullata.',
+  pmProductRemoveConfirm: 'Vuoi eliminare questo prodotto?',
+  pmProductDeleteConfirmation: 'Conferma eliminazione',
+  pmProductEditTooltip: 'Modifica',
+  pmProductRemoveTooltip: 'Rimuovi',
+  pmProductTitle: 'Prodotti',
+  pmProductSearchPlaceholder: 'Cerca',
+
   /* Status */
   statusOrdered: 'Ordinato',
   statusInProgress: 'In corso',
