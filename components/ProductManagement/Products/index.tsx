@@ -11,6 +11,7 @@ import { Product } from '@/types/models/Product';
 import { numToDollar } from '@/utils/util';
 import useAuth from '@/hooks/useAuth';
 import { deleteProduct } from '@/api/producto';
+import { useTranslation } from 'react-i18next';
 
 const tableHeaders = [
   {
@@ -57,6 +58,7 @@ const Products = ({
   closeDeleteDialog,
 }: ProductsProps) => {
   const toast = useRef<Toast>(null);
+  const { t } = useTranslation();
   const { logout } = useAuth();
   const [first, setFirst] = useState<number>(0);
   const [rows, setRows] = useState<number>(10);
@@ -93,26 +95,31 @@ const Products = ({
       const removeProduct = await deleteProduct(id, logout);
 
       if (removeProduct) {
-        showToast('info', 'Confirmed', 'The selected product has been removed.');
+        showToast('info', t('pmAcceptRemoveProductTitle'), t('pmProductRemovedSuccessfully'));
         updateProductList();
       }
     } catch (error) {
       console.error(error);
-      showToast('error', 'Error', 'Error trying to remove the selected product.');
+      showToast('error', t('pmProductTitleError'), t('pmProductErrorRemoving'));
     } finally {
       closeDeleteDialog();
     }
   };
 
   const rejectRemove = () => {
-    toast.current?.show({ severity: 'warn', summary: 'Rejected', detail: 'Operation Canceled.', life: 3000 });
+    toast.current?.show({
+      severity: 'warn',
+      summary: t('pmProductTitleRejected'),
+      detail: t('pmProductOperationCancel'),
+      life: 3000,
+    });
     closeDeleteDialog();
   };
 
   const removeRow = (id: string) => {
     confirmDialog({
-      message: 'Do you want to delete this product?',
-      header: 'Delete Confirmation',
+      message: t('pmProductRemoveConfirm'),
+      header: t('pmProductDeleteConfirmation'),
       icon: 'pi pi-info-circle',
       defaultFocus: 'reject',
       acceptClassName: 'p-button-danger',
@@ -136,9 +143,9 @@ const Products = ({
         <p>{category}</p>
       </article>
       <article className='mid'>
-        <Tooltip target='.edit' content='Edit' position='bottom' />
+        <Tooltip target='.edit' content={t('pmProductEditTooltip')} position='bottom' />
         <i className='pi pi-pencil edit' style={{ fontSize: '1.5rem', color: '#3723c7' }} />
-        <Tooltip target='.remove' content='Remove' position='bottom' />
+        <Tooltip target='.remove' content={t('pmProductRemoveTooltip')} position='bottom' />
         <i className='pi pi-trash remove' style={{ fontSize: '1.5rem', color: '#910c0c' }} onClick={remove} />
       </article>
     </section>
@@ -148,16 +155,19 @@ const Products = ({
     return products?.slice(first, first + rows);
   }, [first]);
 
-
   return (
     <section className='product-management__products'>
       <article className='product-management__products__title'>
-        <h2 className='poppins-600-regular'>Products</h2>
+        <h2 className='poppins-600-regular'>{t('pmProductTitle')}</h2>
       </article>
       <section className='product-management__products__search'>
         <IconField iconPosition='left'>
           <InputIcon className='pi pi-search'> </InputIcon>
-          <InputText v-model={search} onChange={(e) => updateSearch(e.target.value)} placeholder='Search' />
+          <InputText
+            v-model={search}
+            onChange={(e) => updateSearch(e.target.value)}
+            placeholder={t('pmProductSearchPlaceholder')}
+          />
         </IconField>
       </section>
 

@@ -11,6 +11,7 @@ import UpdateModal from '@/components/Modal/UpdateModal/UpdateModal';
 import { InputIcon } from 'primereact/inputicon';
 import { IconField } from 'primereact/iconfield';
 import { InputText } from 'primereact/inputtext';
+import { useTranslation } from 'react-i18next';
 
 interface RowCategoryProps {
   id: string;
@@ -19,6 +20,7 @@ interface RowCategoryProps {
 }
 
 const RowCategory = ({ id, label, handleRemove }: RowCategoryProps) => {
+  const {t} = useTranslation();
   return (
     <section className='category-management__mainbox__list__rows-element'>
       <section className='category-management__mainbox__list__rows-element__label'>
@@ -26,7 +28,7 @@ const RowCategory = ({ id, label, handleRemove }: RowCategoryProps) => {
       </section>
       <Divider layout='vertical' />
       <section className='category-management__mainbox__list__rows-element__actions'>
-        <Tooltip target='.remove' content='Remove' position='bottom' />
+        <Tooltip target='.remove' content={t('pmCategoryRemoveTooltip')} position='bottom' />
         <i className='pi pi-trash remove' style={{ fontSize: '1.5rem', color: '#910c0c' }} onClick={handleRemove} />
       </section>
     </section>
@@ -36,11 +38,12 @@ interface CategoryProps {
   categories?: Platform[] | [];
   updateCategories: () => void;
   confirmDialog: (props: ConfirmDialogProps) => ConfirmDialogReturn;
-  closeDeleteDialog: ()=> void
+  closeDeleteDialog: () => void;
 }
 
 const Category = ({ categories, updateCategories, confirmDialog, closeDeleteDialog }: CategoryProps) => {
   const { logout } = useAuth();
+  const { t } = useTranslation();
   const toast = useRef<Toast>(null);
   const [isModalAddCategoryVisible, setIsModalAddCategoryVisible] = useState<boolean>(false);
   const [newCategory, setNewCategory] = useState<string>('');
@@ -62,26 +65,26 @@ const Category = ({ categories, updateCategories, confirmDialog, closeDeleteDial
       const removeCategory = await deletePlatform(id, logout);
 
       if (removeCategory) {
-        showToast('info', 'Confirmed', 'The selected record has been removed.');
+        showToast('info', t('pmCategoryTitleAddedSuccessfully'), t('pmCategoryRemovedSuccessfully'));
         updateCategories();
       }
     } catch (error) {
       console.error(error);
-      showToast('error', 'Error', 'Error trying to remove the selected category.');
+      showToast('error', t('pmCategoryTitleAddError'), t('pmErrorRemovingCategory'));
     } finally {
       closeDeleteDialog();
     }
   };
 
   const rejectRemove = () => {
-    toast.current?.show({ severity: 'warn', summary: 'Rejected', detail: 'Operation Canceled.', life: 3000 });
-    closeDeleteDialog()
+    toast.current?.show({ severity: 'warn', summary: t('pmCategoryTitleAddRejected'), detail: t('pmOperationCancelCategory'), life: 3000 });
+    closeDeleteDialog();
   };
 
   const removeRow = (id: string) => {
     confirmDialog({
-      message: 'Do you want to delete this category?',
-      header: 'Delete Confirmation',
+      message: t('pmRemoveCategoryDialog'),
+      header: t('pmRemoveCategoryDialogTitle'),
       icon: 'pi pi-info-circle',
       defaultFocus: 'reject',
       acceptClassName: 'p-button-danger',
@@ -98,7 +101,7 @@ const Category = ({ categories, updateCategories, confirmDialog, closeDeleteDial
     try {
       const resultAddedCategory = await createCategory(newCategoryToSave, logout);
       if (resultAddedCategory) {
-        showToast('info', 'Confirmed', 'The new category was added successfully.');
+        showToast('info', t('pmCategoryTitleAddedSuccessfully'), t('pmCategoryAddedSuccessfully'));
         updateCategories();
       }
     } catch (error) {
@@ -118,15 +121,15 @@ const Category = ({ categories, updateCategories, confirmDialog, closeDeleteDial
       <Toast ref={toast} />
       <div className='category-management__mainbox'>
         <div className='category-management__mainbox__title'>
-          <h2 className='poppins-600-regular'>Categories</h2>
+          <h2 className='poppins-600-regular'>{t('pmCategoryTitle')}</h2>
         </div>
         <div className='category-management__mainbox__list'>
           <div className='category-management__mainbox__list__headers'>
             <div className='category-management__mainbox__list__headers__label'>
-              <h2 className='poppins-600-regular'>Title</h2>
+              <h2 className='poppins-600-regular'>{t('pmCategoryLabelTitle')}</h2>
             </div>
             <div className='category-management__mainbox__list__headers__label'>
-              <h2 className='poppins-600-regular'>Options</h2>
+              <h2 className='poppins-600-regular'>{t('pmCategoryLabelOptions')}</h2>
             </div>
           </div>
           <div className='category-management__mainbox__list__rows'>
@@ -142,7 +145,7 @@ const Category = ({ categories, updateCategories, confirmDialog, closeDeleteDial
         </div>
         <div className='category-management__mainbox__options'>
           <Button
-            label='Add'
+            label={t('pmCategoryLabelButtonAdd')}
             severity='info'
             iconPos='left'
             icon='pi pi-plus'
@@ -158,18 +161,18 @@ const Category = ({ categories, updateCategories, confirmDialog, closeDeleteDial
         closeModal={() => setIsModalAddCategoryVisible(false)}
         handleCancel={() => setIsModalAddCategoryVisible(false)}
         handleUpdate={confirmAddCategory}
-        header='Add Category'
-        cancelBtnLabel='Cancel'
-        updateBtnLabel='Add'
+        header={t('pmCategoryUpdateModalTitle')}
+        cancelBtnLabel={t('pmCategoryUpdateModalCancelButton')}
+        updateBtnLabel={t('pmCategoryLabelButtonAdd')}
       >
         <section className='category-management__add-category'>
-          <span>Type the name for the new category and then press the `Add` button. </span>
+          <span>{t('pmAddCategoryModalMsg')}</span>
           <IconField iconPosition='left'>
             <InputIcon className='pi pi-search'> </InputIcon>
             <InputText
               v-model={newCategory}
               onChange={(e) => setNewCategory(e.target.value)}
-              placeholder='New Category'
+              placeholder={t('pmAddCategoryModalPlaceholder')}
             />
           </IconField>
         </section>

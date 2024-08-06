@@ -267,6 +267,45 @@ export const TRANSLATION_FR = {
   productGalleryLabel: 'Galerie:',
   productQuestions: 'Des questions',
 
+  /* Product Management */
+  pmCategoryRemovedSuccessfully: "L'enregistrement sélectionné a été supprimé.",
+  pmErrorRemovingCategory:
+    'Erreur lors de la tentative de suppression de la catégorie sélectionnée.',
+  pmOperationCancelCategory: 'Opération annulée',
+  pmRemoveCategoryDialog: 'Voulez-vous supprimer cette catégorie ?',
+  pmRemoveCategoryDialogTitle: 'Confirmation de suppression',
+  pmCategoryAddedSuccessfully:
+    'La nouvelle catégorie a été ajoutée avec succès.',
+  pmCategoryTitleAddedSuccessfully: 'Confirmé',
+  pmCategoryTitleAddError: 'Erreur',
+  pmCategoryTitleAddRejected: 'Rejeté',
+  pmCategoryTitle: 'Catégories',
+  pmCategoryLabelTitle: 'Titre',
+  pmCategoryLabelOptions: 'Options',
+  pmCategoryLabelButtonAdd: 'Ajouter',
+  pmCategoryUpdateModalTitle: 'Ajouter une catégorie',
+  pmCategoryUpdateModalCancelButton: 'Annuler',
+  pmCategoryRemoveTooltip: 'Supprimer',
+  pmAddCategoryModalMsg:
+    'Tapez le nom de la nouvelle catégorie, puis appuyez sur le bouton `Ajouter`.',
+  pmAddCategoryModalPlaceholder: 'Nouvelle catégorie',
+  pmProdManagementTitle: 'Gestion des produits',
+  pmProdManagementTotalCategories: 'Total des catégories',
+  pmProdManagementtotalProducts: 'Total des produits',
+  pmAcceptRemoveProductTitle: 'Confirmé',
+  pmProductRemovedSuccessfully: 'Le produit sélectionné a été supprimé.',
+  pmProductTitleError: 'Erreur',
+  pmProductTitleRejected: 'Rejeté',
+  pmProductErrorRemoving:
+    'Erreur lors de la tentative de suppression du produit sélectionné.',
+  pmProductOperationCancel: 'Opération annulée.',
+  pmProductRemoveConfirm: 'Voulez-vous supprimer ce produit ?',
+  pmProductDeleteConfirmation: 'Confirmation de suppression',
+  pmProductEditTooltip: 'Modifier',
+  pmProductRemoveTooltip: 'Supprimer',
+  pmProductTitle: 'Produits',
+  pmProductSearchPlaceholder: 'Rechercher',
+
   /* Status */
   statusOrdered: 'Commandé',
   statusInProgress: 'En cours',

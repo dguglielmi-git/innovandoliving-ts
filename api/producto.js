@@ -79,7 +79,6 @@ export async function getProductByID (idProduct) {
     const url = `${getBackendURL()}/productById/${idProduct}`
     const result = await fetchRetryParams(url, params)
     const resultJson = await result.json()
-    console.log(resultJson)
     return resultJson
   } catch (error) {
     console.log(error)
