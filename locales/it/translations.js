@@ -288,6 +288,7 @@ export const TRANSLATION_IT = {
   pmProdManagementTitle: 'Gestione dei Prodotti',
   pmProdManagementTotalCategories: 'Totale Categorie',
   pmProdManagementtotalProducts: 'Totale Prodotti',
+  pmProdManagementProdLabelButtonAdd: 'Aggiungi prodotto',
   pmAcceptRemoveProductTitle: 'Confermato',
   pmProductRemovedSuccessfully: 'Il prodotto selezionato è stato rimosso.',
   pmProductTitleError: 'Errore',

@@ -281,6 +281,7 @@ export const TRANSLATION_ZH = {
   pmProdManagementTitle: '产品管理',
   pmProdManagementTotalCategories: '总类别数',
   pmProdManagementtotalProducts: '总产品数',
+  pmProdManagementProdLabelButtonAdd: '新增產品',
   pmAcceptRemoveProductTitle: '已确认',
   pmProductRemovedSuccessfully: '所选产品已被删除。',
   pmProductTitleError: '错误',

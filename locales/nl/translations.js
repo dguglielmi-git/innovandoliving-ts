@@ -291,6 +291,7 @@ export const TRANSLATION_NL = {
   pmProdManagementTitle: 'Productbeheer',
   pmProdManagementTotalCategories: 'Totaal Categorieën',
   pmProdManagementtotalProducts: 'Totaal Producten',
+  pmProdManagementProdLabelButtonAdd: 'Product toevoegen',
   pmAcceptRemoveProductTitle: 'Bevestigd',
   pmProductRemovedSuccessfully: 'Het geselecteerde product is verwijderd.',
   pmProductTitleError: 'Fout',

@@ -1,17 +1,18 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react';
+import React, { useMemo, useRef, useState } from 'react';
 import { IconField } from 'primereact/iconfield';
 import { InputIcon } from 'primereact/inputicon';
 import { InputText } from 'primereact/inputtext';
 import { Toast } from 'primereact/toast';
 import { Image } from 'primereact/image';
 import { ConfirmDialogProps, ConfirmDialogReturn } from 'primereact/confirmdialog';
-import { Paginator, PaginatorFirstPageLinkOptions, PaginatorPageChangeEvent } from 'primereact/paginator';
+import { Paginator, PaginatorPageChangeEvent } from 'primereact/paginator';
 import { Tooltip } from 'primereact/tooltip';
 import { Product } from '@/types/models/Product';
 import { numToDollar } from '@/utils/util';
 import useAuth from '@/hooks/useAuth';
 import { deleteProduct } from '@/api/producto';
 import { useTranslation } from 'react-i18next';
+import { Button } from 'primereact/button';
 
 const tableHeaders = [
   {
@@ -153,7 +154,7 @@ const Products = ({
 
   const paginatedProducts = useMemo(() => {
     return products?.slice(first, first + rows);
-  }, [first]);
+  }, [first, products]);
 
   return (
     <section className='product-management__products'>
@@ -169,6 +170,14 @@ const Products = ({
             placeholder={t('pmProductSearchPlaceholder')}
           />
         </IconField>
+        <Button
+          label={t('pmProdManagementProdLabelButtonAdd')}
+          severity='info'
+          iconPos='left'
+          icon='pi pi-plus'
+          rounded
+          onClick={() => console.log('add product')}
+        />
       </section>
 
       <section className='product-management__products__table'>
