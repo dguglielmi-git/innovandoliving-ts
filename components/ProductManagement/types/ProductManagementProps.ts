@@ -1,4 +1,4 @@
-import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
+import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
 
 export interface ProductManagementProps {
   icon: IconDefinition;
