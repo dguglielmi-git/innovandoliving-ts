@@ -1,0 +1,61 @@
+.add-edit-product-picture {
+    display: flex;
+    flex-direction: column;
+    margin: 2rem 2rem;
+    padding: 1rem;
+    background: $white;
+    border: 2px solid $ash-white;
+    border-radius: 15px;
+    width: 90%;
+    min-width: 300px;
+
+    &__picture-box {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+
+        &__container {
+            display: flex;
+            border: 1px solid rgb(205, 200, 200);
+            width: 200px;
+            height: 170px;
+            border-radius: 3px;
+            margin-bottom: 20px;
+        }
+
+        &__upload-btn {
+            display: flex;
+
+            button {
+                min-width: unset;
+                min-height: unset;
+                width: 174px !important;
+                background-color: #5F82FF !important;
+                color: white !important;
+                border-radius: 20px !important;
+            }
+        }
+    }
+
+    &__picture-gallery-upload {
+        display: flex;
+        flex-direction: column;
+        margin-top: 20px;
+        min-width: unset;
+
+        label {
+            margin-bottom: 20px;
+        }
+    }
+
+    &__picture-gallery-added {
+        display: flex;
+        flex-direction: column;
+        margin-top: 20px;
+        label {
+            text-align: center;
+            font-weight: bold;
+        }
+    }
+}

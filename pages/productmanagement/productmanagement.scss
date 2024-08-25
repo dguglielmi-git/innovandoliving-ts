@@ -1,0 +1,30 @@
+.product-management {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+
+    &__header {}
+
+    &__form-area {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        flex: 1;
+
+    }
+
+    &__actions {
+        display: flex;
+        justify-content: flex-end;
+
+        button {
+            min-width: unset;
+            min-height: unset;
+            width: 200px;
+            height: 45px;
+            border-radius: 20px;
+            background-color: #5F82FF !important;
+            color: white !important;
+        }
+    }
+}
