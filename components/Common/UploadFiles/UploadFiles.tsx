@@ -1,5 +1,4 @@
 import React, { useRef, useState } from 'react';
-import { Toast } from 'primereact/toast';
 import {
   FileUpload,
   FileUploadHeaderTemplateOptions,
@@ -7,12 +6,13 @@ import {
   FileUploadUploadEvent,
   ItemTemplateOptions,
 } from 'primereact/fileupload';
-import { ProgressBar } from 'primereact/progressbar';
+import { Tag } from 'primereact/tag';
+import { Toast } from 'primereact/toast';
 import { Button } from 'primereact/button';
 import { Tooltip } from 'primereact/tooltip';
-import { Tag } from 'primereact/tag';
+import { ProgressBar } from 'primereact/progressbar';
+import 'primeflex/primeflex.css';
 import 'primeicons/primeicons.css';
-import 'primeflex/primeflex.css';  
 import 'primereact/resources/primereact.css';
 import 'primereact/resources/themes/lara-light-indigo/theme.css';
 
@@ -25,8 +25,8 @@ export default function UploadFiles() {
     let _totalSize = totalSize;
     let files = e.files;
 
-    for (let i = 0; i < files.length; i++) {
-      _totalSize += files[i].size || 0;
+    for (const element of files) {
+      _totalSize += element.size || 0;
     }
 
     setTotalSize(_totalSize);
