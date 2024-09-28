@@ -1,9 +1,9 @@
-import React, { useRef, useState } from 'react';
+import React, { RefObject, useRef, useState } from 'react';
 import {
   FileUpload,
+  FileUploadHandlerEvent,
   FileUploadHeaderTemplateOptions,
   FileUploadSelectEvent,
-  FileUploadUploadEvent,
   ItemTemplateOptions,
 } from 'primereact/fileupload';
 import { Tag } from 'primereact/tag';
@@ -15,13 +15,18 @@ import 'primeflex/primeflex.css';
 import 'primeicons/primeicons.css';
 import 'primereact/resources/primereact.css';
 import 'primereact/resources/themes/lara-light-indigo/theme.css';
+import Image from 'next/image';
 
-export default function UploadFiles() {
+interface UploadFilesProps {
+  filesReference: RefObject<FileUpload>;
+}
+
+export default function UploadFiles({ filesReference }: UploadFilesProps) {
   const toast = useRef<Toast>(null);
   const [totalSize, setTotalSize] = useState(0);
-  const fileUploadRef = useRef<FileUpload>(null);
 
   const onTemplateSelect = (e: FileUploadSelectEvent) => {
+    console.log(e.files);
     let _totalSize = totalSize;
     let files = e.files;
 
@@ -32,35 +37,26 @@ export default function UploadFiles() {
     setTotalSize(_totalSize);
   };
 
-  const onTemplateUpload = (e: FileUploadUploadEvent) => {
-    let _totalSize = 0;
-
-    e.files.forEach((file) => {
-      _totalSize += file.size || 0;
-    });
-
-    setTotalSize(_totalSize);
-    toast.current?.show({ severity: 'info', summary: 'Success', detail: 'File Uploaded' });
-  };
-
-  const onTemplateRemove = (file: File, callback: Function) => {
+  const onRemoveAFile = (file: File, callback: Function) => {
+    console.log('remove list');
+    console.log('filesReference', filesReference);
     setTotalSize(totalSize - file.size);
     callback();
   };
 
-  const onTemplateClear = () => {
+  const onClearList = () => {
+    console.log('clear list');
     setTotalSize(0);
   };
 
-  const headerTemplate = (options: FileUploadHeaderTemplateOptions) => {
-    const { className, chooseButton, uploadButton, cancelButton } = options;
+  const uploadContainer = (options: FileUploadHeaderTemplateOptions) => {
+    const { className, chooseButton, cancelButton } = options;
     const value = totalSize / 10000;
-    const formatedValue = fileUploadRef && fileUploadRef.current ? fileUploadRef.current.formatSize(totalSize) : '0 B';
+    const formatedValue = filesReference && filesReference.current ? filesReference.current.formatSize(totalSize) : '0 B';
 
     return (
       <div className={className} style={{ backgroundColor: 'transparent', display: 'flex', alignItems: 'center' }}>
         {chooseButton}
-        {uploadButton}
         {cancelButton}
         <div className='flex align-items-center gap-3 ml-auto'>
           <span>{formatedValue} / 1 MB</span>
@@ -70,12 +66,12 @@ export default function UploadFiles() {
     );
   };
 
-  const itemTemplate = (inFile: object, props: ItemTemplateOptions) => {
+  const itemContainer = (inFile: object, props: ItemTemplateOptions) => {
     const file = inFile as File;
     return (
       <div className='flex align-items-center flex-wrap'>
         <div className='flex align-items-center' style={{ width: '40%' }}>
-          <img alt={file.name} role='presentation' src={file.objectURL} width={100} />
+          <Image alt={file.name} src={file.objectURL}  height={100} width={100} />
           <span className='flex flex-column text-left ml-3'>
             {file.name}
             <small>{new Date().toLocaleDateString()}</small>
@@ -86,13 +82,13 @@ export default function UploadFiles() {
           type='button'
           icon='pi pi-times'
           className='p-button-outlined p-button-rounded p-button-danger ml-auto'
-          onClick={() => onTemplateRemove(file, props.onRemove)}
+          onClick={() => onRemoveAFile(file, props.onRemove)}
         />
       </div>
     );
   };
 
-  const emptyTemplate = () => {
+  const emptyContainer = () => {
     return (
       <div className='flex align-items-center flex-column'>
         <i
@@ -116,11 +112,6 @@ export default function UploadFiles() {
     iconOnly: true,
     className: 'custom-choose-btn p-button-rounded p-button-outlined',
   };
-  const uploadOptions = {
-    icon: 'pi pi-fw pi-cloud-upload',
-    iconOnly: true,
-    className: 'custom-upload-btn p-button-success p-button-rounded p-button-outlined',
-  };
   const cancelOptions = {
     icon: 'pi pi-fw pi-times',
     iconOnly: true,
@@ -132,25 +123,22 @@ export default function UploadFiles() {
       <Toast ref={toast}></Toast>
 
       <Tooltip target='.custom-choose-btn' content='Choose' position='bottom' />
-      <Tooltip target='.custom-upload-btn' content='Upload' position='bottom' />
       <Tooltip target='.custom-cancel-btn' content='Clear' position='bottom' />
 
       <FileUpload
-        ref={fileUploadRef}
-        name='demo[]'
-        url='/api/upload'
+        ref={filesReference}
+        name='productpics[]'
         multiple
         accept='image/*'
         maxFileSize={1000000}
-        onUpload={onTemplateUpload}
+        customUpload
         onSelect={onTemplateSelect}
-        onError={onTemplateClear}
-        onClear={onTemplateClear}
-        headerTemplate={headerTemplate}
-        itemTemplate={itemTemplate}
-        emptyTemplate={emptyTemplate}
+        onError={onClearList}
+        onClear={onClearList}
+        headerTemplate={uploadContainer}
+        itemTemplate={itemContainer}
+        emptyTemplate={emptyContainer}
         chooseOptions={chooseOptions}
-        uploadOptions={uploadOptions}
         cancelOptions={cancelOptions}
       />
     </div>

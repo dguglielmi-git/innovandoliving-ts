@@ -247,3 +247,77 @@ export async function deleteProduct (idProduct, logout) {
     return false
   }
 }
+
+export async function uploadFileToS3 (file) {
+  try {
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_URL_MERCADOPAGO_BACKEND}/generateSignedUrl?filename=${file.name}&filetype=${file.type}`
+    )
+    const { filename, url } = await response.json()
+
+    const result = await fetch(url, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': file.type
+      },
+      body: file
+    })
+
+    if (result.ok) {
+      console.log('Archivo subido correctamente')
+      return { filename, error: '' }
+    } else {
+      console.error('Error al subir el archivo')
+      return { error: `filename ${file.name} error` }
+    }
+  } catch (err) {
+    console.error('Error al subir archivo a S3:', err)
+    return { error: `filename ${file.name} error` }
+  }
+}
+export async function uploadFile (body, fileName, fileType) {
+  // const url = `${process.env.NEXT_PUBLIC_URL_MERCADOPAGO_BACKEND}/productFile/upload?filename=${fileName}&filetype=${fileType}`
+  const url = `http://localhost:5001/innovandoliving-mercadopago-cf/us-central1/innovandoLivingMP/productFile/upload?filename=${fileName}&filetype=${fileType}`
+  try {
+    const params = {
+      method: 'POST',
+      body: body
+    }
+
+    const response = await fetchRetryParams(url, params)
+
+    if (response) {
+      const data = await response.json()
+
+      return data
+    }
+  } catch (error) {
+    console.error(error)
+  }
+}
+
+export async function saveProduct (product) {
+  try {
+    const token = getToken()
+
+    if (!token) {
+      logout()
+    }
+
+    const url = `${process.env.NEXT_PUBLIC_URL_MERCADOPAGO_BACKEND}/product`
+    const params = {
+      method: 'POST',
+      headers: {
+        'x-token': token,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(product)
+    }
+    await fetchRetryParams(url, params)
+
+    return true
+  } catch (error) {
+    console.error(error)
+    return false
+  }
+}

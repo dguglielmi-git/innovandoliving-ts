@@ -15,7 +15,6 @@ export default function InfoProducto(props) {
                 <CarouselScreenshots
                     title={ producto.title }
                     screenshots={ producto.screenshots }
-
                 /> }
 
             <div className="info-producto__content">
