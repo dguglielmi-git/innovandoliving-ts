@@ -1,4 +1,5 @@
-import { Dropdown, FormField } from 'semantic-ui-react';
+import { SyntheticEvent } from 'react';
+import { Dropdown, DropdownProps, FormField } from 'semantic-ui-react';
 
 interface ImageDropdownEntity {
   avatar: boolean;
@@ -16,13 +17,24 @@ interface CustomDropdownProps {
   placeholder?: string;
   options: DropdownOptionsEntity[];
   name?: string;
-  onChange?: () => void;
+  onChange?: (event: SyntheticEvent<HTMLElement, Event>, data: DropdownProps) => void;
+  error?: boolean;
+  value?: string;
 }
 
-const CustomDropdown = ({ placeholder, options, name, onChange }: CustomDropdownProps) => {
+const CustomDropdown = ({ placeholder, options, name, onChange, error, value }: CustomDropdownProps) => {
   return (
     <FormField>
-      <Dropdown placeholder={placeholder} fluid selection options={options} name={name} onChange={onChange} />
+      <Dropdown
+        placeholder={placeholder}
+        fluid
+        selection
+        options={options}
+        name={name}
+        onChange={onChange}
+        error={error}
+        value={value}
+      />
     </FormField>
   );
 };

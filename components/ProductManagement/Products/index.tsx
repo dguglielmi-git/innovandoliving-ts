@@ -149,7 +149,11 @@ const Products = ({
       </article>
       <article className='mid'>
         <Tooltip target='.edit' content={t('pmProductEditTooltip')} position='bottom' />
-        <i className='pi pi-pencil edit' style={{ fontSize: '1.5rem', color: '#3723c7' }} />
+        <i
+          className='pi pi-pencil edit'
+          style={{ fontSize: '1.5rem', color: '#3723c7' }}
+          onClick={() => router.push(`/productmanagement/addproduct?edit=${id}`)}
+        />
         <Tooltip target='.remove' content={t('pmProductRemoveTooltip')} position='bottom' />
         <i className='pi pi-trash remove' style={{ fontSize: '1.5rem', color: '#910c0c' }} onClick={remove} />
       </article>

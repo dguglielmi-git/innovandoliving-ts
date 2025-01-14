@@ -1,4 +1,4 @@
-import React, { RefObject, useRef, useState } from 'react';
+import React, { RefObject, useEffect, useRef, useState } from 'react';
 import {
   FileUpload,
   FileUploadHandlerEvent,
@@ -25,8 +25,20 @@ export default function UploadFiles({ filesReference }: UploadFilesProps) {
   const toast = useRef<Toast>(null);
   const [totalSize, setTotalSize] = useState(0);
 
+  useEffect(() => {
+    let _totalSize = totalSize;
+    let files = filesReference.current?.getFiles();
+
+    if (files) {
+      for (const element of files) {
+        _totalSize += element.size || 0;
+      }
+    }
+
+    setTotalSize(_totalSize);
+  }, [filesReference]);
+
   const onTemplateSelect = (e: FileUploadSelectEvent) => {
-    console.log(e.files);
     let _totalSize = totalSize;
     let files = e.files;
 
@@ -52,7 +64,8 @@ export default function UploadFiles({ filesReference }: UploadFilesProps) {
   const uploadContainer = (options: FileUploadHeaderTemplateOptions) => {
     const { className, chooseButton, cancelButton } = options;
     const value = totalSize / 10000;
-    const formatedValue = filesReference && filesReference.current ? filesReference.current.formatSize(totalSize) : '0 B';
+    const formatedValue =
+      filesReference && filesReference.current ? filesReference.current.formatSize(totalSize) : '0 B';
 
     return (
       <div className={className} style={{ backgroundColor: 'transparent', display: 'flex', alignItems: 'center' }}>
@@ -71,7 +84,7 @@ export default function UploadFiles({ filesReference }: UploadFilesProps) {
     return (
       <div className='flex align-items-center flex-wrap'>
         <div className='flex align-items-center' style={{ width: '40%' }}>
-          <Image alt={file.name} src={file.objectURL}  height={100} width={100} />
+          <Image alt={file.name} src={file.objectURL} height={100} width={100} />
           <span className='flex flex-column text-left ml-3'>
             {file.name}
             <small>{new Date().toLocaleDateString()}</small>

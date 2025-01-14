@@ -1,25 +1,15 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useRef } from 'react';
 import { Button } from 'primereact/button';
 import { Carousel, CarouselResponsiveOption } from 'primereact/carousel';
-import { ProductService } from './service/ProductService';
 import { ConfirmDialog, confirmDialog } from 'primereact/confirmdialog';
 import { Toast } from 'primereact/toast';
+import { GalleryFiles } from '@/api/product';
 
-interface Product {
-  id: string;
-  code: string;
-  name: string;
-  description: string;
-  image: string;
-  price: number;
-  category: string;
-  quantity: number;
-  inventoryStatus: string;
-  rating: number;
+interface PictureGalleryProps {
+  screenshots: GalleryFiles[];
 }
 
-export default function PictureGallery() {
-  const [products, setProducts] = useState<Product[]>([]);
+export default function PictureGallery({ screenshots }: PictureGalleryProps) {
   const responsiveOptions: CarouselResponsiveOption[] = [
     {
       breakpoint: '1400px',
@@ -64,19 +54,11 @@ export default function PictureGallery() {
     });
   };
 
-  useEffect(() => {
-    ProductService.getProductsSmall().then((data) => setProducts(data.slice(0, 9)));
-  }, []);
-
-  const productTemplate = (product: Product) => {
+  const productTemplate = (urlProduct: string) => {
     return (
       <div className='border-1 surface-border border-round m-2 text-center py-5 px-3'>
         <div className='mb-3'>
-          <img
-            src={`https://primefaces.org/cdn/primereact/images/product/${product.image}`}
-            alt={product.name}
-            className='w-6 shadow-2'
-          />
+          <img src={urlProduct} alt={urlProduct} className='w-6 shadow-2' height='250px' />
         </div>
         <div>
           <div className='mt-5 flex flex-wrap gap-2 justify-content-center'>
@@ -94,7 +76,7 @@ export default function PictureGallery() {
       <Toast ref={toast} />
       <ConfirmDialog />
       <Carousel
-        value={products}
+        value={screenshots.flatMap((u) => u.url)}
         numScroll={1}
         numVisible={3}
         responsiveOptions={responsiveOptions}

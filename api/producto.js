@@ -267,7 +267,7 @@ export async function uploadFileToS3 (file) {
       console.log('Archivo subido correctamente')
       return { filename, error: '' }
     } else {
-      console.error('Error al subir el archivo')
+      console.error('Error al subir el archivo', result)
       return { error: `filename ${file.name} error` }
     }
   } catch (err) {
@@ -304,6 +304,23 @@ export async function saveProduct (product) {
       logout()
     }
 
+    console.log('product received', product)
+
+    const body = JSON.stringify({
+      summary: product.summary,
+      title: product.title,
+      price: product.price,
+      url: product.url,
+      platform: product.platform,
+      screenshots: product.screenshots.map(product => {
+        product.url
+      }),
+      discount: product.discount,
+      releaseDate: product.releaseDate,
+      publish: product.publish
+    })
+    console.log('body', body)
+
     const url = `${process.env.NEXT_PUBLIC_URL_MERCADOPAGO_BACKEND}/product`
     const params = {
       method: 'POST',
@@ -311,7 +328,7 @@ export async function saveProduct (product) {
         'x-token': token,
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(product)
+      body: body
     }
     await fetchRetryParams(url, params)
 
