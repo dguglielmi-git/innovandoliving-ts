@@ -125,7 +125,7 @@ export default function AddProduct() {
     try {
       const tmpSingleFile: string = await uploadMainPicture();
 
-      const filteredScreenshots = await uploadGalleryMultipleFiles();
+      const filteredScreenshots: GalleryFiles[] = await uploadGalleryMultipleFiles();
 
       const updateProd: ProductDTO = {
         ...getProductStructure(),

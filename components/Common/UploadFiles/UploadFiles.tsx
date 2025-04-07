@@ -1,7 +1,6 @@
 import React, { RefObject, useEffect, useRef, useState } from 'react';
 import {
   FileUpload,
-  FileUploadHandlerEvent,
   FileUploadHeaderTemplateOptions,
   FileUploadSelectEvent,
   ItemTemplateOptions,
@@ -48,18 +47,18 @@ export default function UploadFiles({ filesReference, setFormModified }: UploadF
     }
 
     setTotalSize(_totalSize);
-    setFormModified()
+    setFormModified();
   };
 
   const onRemoveAFile = (file: File, callback: Function) => {
     setTotalSize(totalSize - file.size);
     callback();
-    setFormModified()
+    setFormModified();
   };
 
   const onClearList = () => {
     setTotalSize(0);
-    setFormModified()
+    setFormModified();
   };
 
   const uploadContainer = (options: FileUploadHeaderTemplateOptions) => {
