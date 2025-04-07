@@ -16,7 +16,7 @@ export async function loginApi(formData) {
     const result = await fetchRetryParams(url, params);
     return result.json();
   } catch (error) {
-    console.log(error);
+    console.error(error);
     return null;
   }
 }
@@ -35,7 +35,7 @@ export async function registerApi(formData) {
     const result = await fetchRetryParams(url, params);
     return result.json();
   } catch (error) {
-    console.log(error);
+    console.error(error);
     return {
       error,
       registered: false,
@@ -99,7 +99,7 @@ export async function resetPasswordApi(email) {
   try {
     return null;
   } catch (error) {
-    console.log(error);
+    console.error(error);
     return null;
   }
 }

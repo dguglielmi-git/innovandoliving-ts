@@ -6,10 +6,11 @@ import { Toast } from 'primereact/toast';
 import { GalleryFiles } from '@/api/product';
 
 interface PictureGalleryProps {
+  updateGallery: (option: string, urlImage?: string) => Promise<Boolean>;
   screenshots: GalleryFiles[];
 }
 
-export default function PictureGallery({ screenshots }: PictureGalleryProps) {
+export default function PictureGallery({ updateGallery, screenshots }: PictureGalleryProps) {
   const responsiveOptions: CarouselResponsiveOption[] = [
     {
       breakpoint: '1400px',
@@ -34,22 +35,25 @@ export default function PictureGallery({ screenshots }: PictureGalleryProps) {
   ];
   const toast = useRef<Toast>(null);
 
-  const confirmDelete = () => {
-    toast.current?.show({ severity: 'info', summary: 'Confirmed', detail: 'You have accepted', life: 3000 });
+  const confirmDelete = async (urlImage: string) => {
+    const responseUpdate = await updateGallery('remove', urlImage);
+    if (responseUpdate) {
+      toast.current?.show({ severity: 'info', summary: 'Successfully Removed', detail: 'Picture was remove from the Gallery', life: 3000 });
+    }
   };
 
   const cancelDelete = () => {
     toast.current?.show({ severity: 'warn', summary: 'Rejected', detail: 'You have rejected', life: 3000 });
   };
 
-  const openDeleteDialog = () => {
+  const openDeleteDialog = (urlImage: string) => {
     confirmDialog({
       message: 'Do you want to delete this record?',
       header: 'Delete Confirmation',
       icon: 'pi pi-info-circle',
       defaultFocus: 'reject',
       acceptClassName: 'p-button-danger',
-      accept: confirmDelete,
+      accept: () => confirmDelete(urlImage),
       reject: cancelDelete,
     });
   };
@@ -62,9 +66,13 @@ export default function PictureGallery({ screenshots }: PictureGalleryProps) {
         </div>
         <div>
           <div className='mt-5 flex flex-wrap gap-2 justify-content-center'>
-            <Button icon='pi pi-trash' className='p-button p-button-rounded' onClick={openDeleteDialog}>
-              Remove
-            </Button>
+            <Button
+              icon='pi pi-trash'
+              label='Remove'
+              className='p-button p-button-rounded'
+              type='button'
+              onClick={() => openDeleteDialog(urlProduct)}
+            />
           </div>
         </div>
       </div>

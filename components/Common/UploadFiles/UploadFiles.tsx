@@ -19,9 +19,10 @@ import Image from 'next/image';
 
 interface UploadFilesProps {
   filesReference: RefObject<FileUpload>;
+  setFormModified: () => void;
 }
 
-export default function UploadFiles({ filesReference }: UploadFilesProps) {
+export default function UploadFiles({ filesReference, setFormModified }: UploadFilesProps) {
   const toast = useRef<Toast>(null);
   const [totalSize, setTotalSize] = useState(0);
 
@@ -47,18 +48,18 @@ export default function UploadFiles({ filesReference }: UploadFilesProps) {
     }
 
     setTotalSize(_totalSize);
+    setFormModified()
   };
 
   const onRemoveAFile = (file: File, callback: Function) => {
-    console.log('remove list');
-    console.log('filesReference', filesReference);
     setTotalSize(totalSize - file.size);
     callback();
+    setFormModified()
   };
 
   const onClearList = () => {
-    console.log('clear list');
     setTotalSize(0);
+    setFormModified()
   };
 
   const uploadContainer = (options: FileUploadHeaderTemplateOptions) => {

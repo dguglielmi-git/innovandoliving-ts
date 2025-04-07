@@ -18,98 +18,125 @@ export default function AddProduct() {
   const mainPictureReference = useRef<FileUpload>(null);
   const filesReference = useRef<FileUpload>(null);
   let singleFile: S3FileUpload | undefined = undefined;
-  let multipleFiles: S3FileUpload[] = [];
-  let urlMainFile: string = '';
+  const [urlMainFile, setUrlMainFile] = useState<string | undefined>(undefined);
   const [galleryUrls, setGalleryUrls] = useState<GalleryFiles[]>([]);
-  const [uploadedFiles, setUploadedFiles] = useState<GalleryFiles[]>([]);
   const [categories, setCategories] = useState<Categories[]>([]);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+  const [editionMode, setEditionMode] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [formModified, setFormModified] = useState<Boolean>(false);
   const router = useRouter();
   const { edit: productId } = router.query;
 
-  const uploadPictures = async (): Promise<void> => {
-    if (singleFile === undefined) {
-      singleFile = {
-        data: {
-          file: mainPictureReference.current?.getFiles()[0],
-          uploaded: false,
-        },
-      };
-    }
+  const getProductStructure = (): ProductDTO => ({
+    summary: formik.values.productSummary,
+    title: formik.values.productTitle,
+    price: formik.values.price,
+    url: urlMainFile ?? '',
+    platform: formik.values.productCategory,
+    screenshots: galleryUrls,
+    discount: formik.values.discount,
+    releaseDate: formik.values.releaseDate,
+    publish: formik.values.publish,
+  });
 
+  const performUpdate = async (updateProd: ProductDTO): Promise<boolean> => {
+    const updateResponse = await updateProduct(String(productId), updateProd);
+    if (updateResponse) {
+      getUpdatingProduct();
+      return true;
+    }
+    return false;
+  };
+
+  const uploadMainPicture = async (): Promise<string> => {
     try {
-      filesReference.current?.getFiles().map((file) =>
-        multipleFiles.push({
+      if (singleFile === undefined) {
+        singleFile = {
           data: {
-            file: file,
+            file: mainPictureReference.current?.getFiles()[0],
             uploaded: false,
           },
-        })
-      );
+        };
+      }
+      let tmpSingleFile: string = '';
 
       if (singleFile.data.file) {
         if (!singleFile.data.uploaded) {
           const result = await uploadFileToS3(singleFile.data.file);
 
           if (result.error === '') {
-            urlMainFile = result.filename;
+            const awsUploadedFileName = await result.filename;
+            tmpSingleFile = awsUploadedFileName;
+
             mainPictureReference.current?.clear();
           } else {
             console.error('Error response received from AWS:', result.error);
           }
         }
       }
+      return tmpSingleFile;
+    } catch (error) {
+      console.error(error);
+      return '';
+    }
+  };
 
+  const uploadGalleryMultipleFiles = async (): Promise<GalleryFiles[]> => {
+    try {
       const notUploadedFiles: File[] = [];
       const tmpGalleryUrls: GalleryFiles[] = [];
 
-      if (filesReference.current?.getFiles()) {
-        filesReference.current?.getFiles().forEach(async (data) => {
-          const result = await uploadFileToS3(data);
-          if (result.error === '') {
-            tmpGalleryUrls.push({
-              url: result.filename,
-            });
-          } else {
-            notUploadedFiles.push(data);
-            console.error('error recibido:', result.error);
-          }
-          setUploadedFiles((prev) => [...prev, ...tmpGalleryUrls]);
-          filesReference.current?.setFiles(notUploadedFiles);
-
-          const updateProd: ProductDTO = {
-            summary: formik.values.productSummary,
-            title: formik.values.productTitle,
-            price: formik.values.price,
-            url: urlMainFile ?? '',
-            platform: formik.values.productCategory,
-            screenshots: Object.values(galleryUrls ?? [])
-              .flatMap((ff) =>
-                Object.entries(ff).map((fff) => {
-                  return { url: fff[1].replace('blob:', '') };
-                })
-              )
-              .concat(
-                Object.values(tmpGalleryUrls ?? []).flatMap((ff) =>
-                  Object.entries(ff).map((fff) => {
-                    return { url: fff[1].replace('blob:', '') };
-                  })
-                )
-              ),
-            discount: formik.values.discount,
-            releaseDate: formik.values.releaseDate,
-            publish: formik.values.publish,
-          };
-          const updateResponse = await updateProduct(String(productId), updateProd);
-          const { product } = await updateResponse;
-          if (product) {
-            console.log('updateResponse', product);
-            setSelectedProduct(product);
-          }
-        });
+      const files = filesReference.current?.getFiles() || [];
+      for (const file of files) {
+        const result = await uploadFileToS3(file);
+        if (result.error === '') {
+          tmpGalleryUrls.push({ url: result.filename });
+        } else {
+          notUploadedFiles.push(file);
+          console.error('error received:', result.error);
+        }
       }
+
+      filesReference.current?.setFiles(notUploadedFiles);
+
+      const filteredScreenshots: GalleryFiles[] = Object.values(galleryUrls ?? [])
+        .flatMap((ff) =>
+          Object.entries(ff).map((fff) => {
+            return { url: fff[1].replace('blob:', '') };
+          })
+        )
+        .concat(
+          Object.values(tmpGalleryUrls ?? []).flatMap((ff) =>
+            Object.entries(ff).map((fff) => {
+              return { url: fff[1].replace('blob:', '') };
+            })
+          )
+        )
+        .filter((screenshot) => screenshot.url.startsWith('https'));
+      return filteredScreenshots;
+    } catch (error) {
+      console.error(error);
+      return [];
+    }
+  };
+
+  const uploadPictures = async (): Promise<boolean> => {
+    try {
+      const tmpSingleFile: string = await uploadMainPicture();
+
+      const filteredScreenshots = await uploadGalleryMultipleFiles();
+
+      const updateProd: ProductDTO = {
+        ...getProductStructure(),
+        url: (tmpSingleFile !== '' ? tmpSingleFile : urlMainFile) ?? '',
+        screenshots: filteredScreenshots,
+      };
+
+      return await performUpdate(updateProd);
     } catch (error) {
       console.error('error uploading pictures', error);
+      return false;
     }
   };
 
@@ -126,36 +153,25 @@ export default function AddProduct() {
       price: 0,
       discount: 0,
       publish: false,
+      url: undefined,
     },
     validationSchema: validateForm,
     validateOnChange: false,
 
     onSubmit: async () => {
       try {
-        if (productId) {
-          // Edit the product
-          // todo: verify if the form data has changed
-          // todo: send the pictures to the database
-          // console.log('multipleFiles', filesReference.current?.getFiles());
-          // console.log('formik', formik.values);
-          // console.log(
-          //   'filesssssss',
-          //   filesReference.current?.getFiles().map((url: any) => ({ url: url.objectURL }))
-          // );
-          // await uploadPictures();
-          await uploadPictures();
+        setLoading(true);
+        if (editionMode) {
+          const updateResultOperation = await uploadPictures();
+          if (updateResultOperation) {
+            getUpdatingProduct();
+            toast.success('Product was successfully updated');
+          }
+          setLoading(false);
         } else {
-          // Create a new Product
           const newProduct: ProductDTO = {
-            summary: formik.values.productSummary,
-            title: formik.values.productTitle,
-            price: formik.values.price,
-            url: urlMainFile ?? '',
-            platform: formik.values.productCategory,
+            ...getProductStructure(),
             screenshots: [],
-            discount: formik.values.discount,
-            releaseDate: formik.values.releaseDate,
-            publish: formik.values.publish,
           };
 
           const responseNewProduct = await saveProduct(newProduct);
@@ -166,10 +182,12 @@ export default function AddProduct() {
             console.error('Error adding the new product');
             toast.error('Something went wrong trying to save the file, review the data added and try again');
           }
+          setLoading(false);
         }
       } catch (error) {
         console.error('Error uploading files:', error);
         toast.error('Something went wrong trying to save the file, review the data added and try again');
+        setLoading(false);
       }
     },
   });
@@ -184,19 +202,12 @@ export default function AddProduct() {
     if (response) {
       setSelectedProduct(response);
     }
-    // formik.setFieldValue('productTitle', response?.title ?? '');
-    // formik.setFieldValue('productSummary', response?.summary);
-    // formik.setFieldValue('productCategory', response?.platform?._id);
-    // formik.setFieldValue('price', response?.price.$numberDecimal);
-    // formik.setFieldValue('discount', response?.discount);
-    // formik.setFieldValue('releaseDate', response?.published_at);
 
-    // if (response?.screenshots?.length > 0) {
-    //   const tmpGallery: GalleryFiles[] = [];
-    //   tmpGallery.push(response.screenshots.map((screenshot: { url: string }) => screenshot.url));
-    //   setGalleryUrls(tmpGallery);
-    //   console.log('getUpdatingProduct() - setGalleryUrls(tmpGallery) value:', tmpGallery);
-    // }
+    if (response?.screenshots?.length > 0) {
+      const tmpGallery: GalleryFiles[] = [];
+      tmpGallery.push(response.screenshots.map((screenshot: { url: string }) => screenshot.url));
+      setGalleryUrls(tmpGallery);
+    }
   };
 
   useEffect(() => {
@@ -207,6 +218,11 @@ export default function AddProduct() {
       formik.setFieldValue('price', selectedProduct?.price.$numberDecimal);
       formik.setFieldValue('discount', selectedProduct?.discount);
       formik.setFieldValue('releaseDate', selectedProduct?.releaseDate);
+      formik.setFieldValue('url', selectedProduct?.url);
+
+      if (selectedProduct?.url.trim() !== '') {
+        setUrlMainFile(selectedProduct.url);
+      }
 
       if (selectedProduct?.screenshots?.length > 0) {
         setGalleryUrls(selectedProduct?.screenshots);
@@ -217,6 +233,7 @@ export default function AddProduct() {
   useEffect(() => {
     if (productId) {
       getUpdatingProduct();
+      setEditionMode(true);
     }
   }, [productId]);
 
@@ -224,27 +241,54 @@ export default function AddProduct() {
     getCategories();
   }, []);
 
+  const updateGallery = async (option: string, urlImage?: string): Promise<Boolean> => {
+    if (option === 'remove') {
+      try {
+        setGalleryUrls(galleryUrls.filter((picture) => picture.url !== urlImage));
+        setFormModified(true);
+        return true;
+      } catch (error) {
+        console.error('Error when trying to remove a picture from the gallery: ', error);
+        return false;
+      }
+    } else if (option === 'clearMainPicture') {
+      try {
+        setUrlMainFile(undefined);
+        setFormModified(true);
+        return true;
+      } catch (error) {
+        console.error('Error when trying to remove a picture from the gallery: ', error);
+        return false;
+      }
+    }
+    return false;
+  };
+
+  const formHasBeenModified = () => setFormModified(true);
   return (
     <BasicLayout className='queries' style={{ backgroundColor: '#F6F6F6' }}>
-      <Form onSubmit={() => formik.handleSubmit()}>
+      <Form onSubmit={formik.handleSubmit}>
         <section className='product-management'>
           <section className='product-management__header'>
-            <AddEditProductHeader title={productId ? 'Edit the product' : 'Add a Product'} />
+            <AddEditProductHeader title={editionMode ? 'Edit the product' : 'Add a Product'} />
           </section>
           <section className='product-management__form-area'>
             <AddEditProductDetails title='Product Details' formik={formik} categories={categories} />
-            {productId && (
+            {editionMode && (
               <AddEditProductPicture
+                updateGallery={updateGallery}
+                urlMainPicture={urlMainFile}
                 mainPictureReference={mainPictureReference}
                 filesReference={filesReference}
                 galleryUrl={galleryUrls}
+                setFormModified={formHasBeenModified}
               />
             )}
           </section>
           <section className='product-management__actions'>
-            <Button type='submit' icon='save'>
+            <Button type='submit' icon='save' loading={loading} disabled={!formModified}>
               <Icon name='save' />
-              {productId ? 'Save Changes' : 'Create'}
+              {editionMode ? 'Save Changes' : 'Create'}
             </Button>
           </section>
         </section>

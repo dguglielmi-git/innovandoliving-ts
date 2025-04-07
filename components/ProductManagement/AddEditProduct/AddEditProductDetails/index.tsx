@@ -42,7 +42,6 @@ export const AddEditProductDetails = ({ title, formik, categories }: AddEditProd
           options={loadCategories}
           name='productCategory'
           onChange={(_event, data) => formik.setFieldValue('productCategory', data.value)}
-          error={formik.errors.productCategory}
           value={formik.values.productCategory}
         />
         <CustomInput

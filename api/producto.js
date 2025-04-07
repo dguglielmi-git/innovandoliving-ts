@@ -319,7 +319,6 @@ export async function saveProduct (product) {
       releaseDate: product.releaseDate,
       publish: product.publish
     })
-    console.log('body', body)
 
     const url = `${process.env.NEXT_PUBLIC_URL_MERCADOPAGO_BACKEND}/product`
     const params = {

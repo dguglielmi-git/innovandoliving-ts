@@ -69,10 +69,13 @@ export async function updateProduct(productId: string, product: ProductDTO) {
       body: body,
     };
     const response = await fetchRetryParams(url, params);
-
-    return response.json();
+    console.log('updateProduct finished ok');
+    if (response) {
+      return response.json();
+    }
+    return null;
   } catch (error) {
-    console.error(error);
+    console.error('updateProduct error', error);
     return null;
   }
 }
