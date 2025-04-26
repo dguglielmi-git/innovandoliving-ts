@@ -265,6 +265,7 @@ export default function AddProduct() {
   };
 
   const formHasBeenModified = () => setFormModified(true);
+
   return (
     <BasicLayout className='queries' style={{ backgroundColor: '#F6F6F6' }}>
       <Form onSubmit={formik.handleSubmit}>
@@ -273,7 +274,12 @@ export default function AddProduct() {
             <AddEditProductHeader title={editionMode ? 'Edit the product' : 'Add a Product'} />
           </section>
           <section className='product-management__form-area'>
-            <AddEditProductDetails title='Product Details' formik={formik} categories={categories} />
+            <AddEditProductDetails
+              title='Product Details'
+              formik={formik}
+              categories={categories}
+              setFormModified={formHasBeenModified}
+            />
             {editionMode && (
               <AddEditProductPicture
                 updateGallery={updateGallery}

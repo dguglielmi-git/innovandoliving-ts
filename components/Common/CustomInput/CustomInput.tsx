@@ -3,7 +3,7 @@ interface CustomInputProps {
   label: string;
   placeholder?: string;
   name?: string;
-  onChange?: () => void;
+  onChange?: (e?: any, d?: any) => void;
   cssClass?: string;
   value?: string;
 }

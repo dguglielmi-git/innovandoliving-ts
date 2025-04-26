@@ -4,7 +4,7 @@ import { FormField } from 'semantic-ui-react';
 
 interface CustomInputCalendarProps {
   value: Nullable<Date>;
-  onChange: () => void;
+  onChange: (e?: any, d?: any) => void;
   name: string;
   label: string;
 }
