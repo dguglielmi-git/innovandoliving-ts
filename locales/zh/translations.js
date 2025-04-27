@@ -281,6 +281,7 @@ export const TRANSLATION_ZH = {
   pmProdManagementTitle: '产品管理',
   pmProdManagementTotalCategories: '总类别数',
   pmProdManagementtotalProducts: '总产品数',
+  pmProdManagementProdLabelButtonAdd: '新增產品',
   pmAcceptRemoveProductTitle: '已确认',
   pmProductRemovedSuccessfully: '所选产品已被删除。',
   pmProductTitleError: '错误',
@@ -426,6 +427,57 @@ export const TRANSLATION_ZH = {
   /* account */
   accountConfigurationTitle: '配置',
   accountAddressTitle: '地址',
+
+  /* pictureGallery */
+  pictureGalleryConfirmDeleteSummary: '成功移除',
+  pictureGalleryConfirmDeleteDetail: '图片已从图库中移除',
+  pictureGalleryConfirmDeleteRejected: '操作已取消',
+  pictureGalleryConfirmDeleteRejectedSummary: '已拒绝',
+  pictureGalleryConfirmDeleteQuestion: '您确定要删除此记录吗？',
+  pictureGalleryConfirmDeleteHeader: '删除确认',
+  pictureGalleryProductRemoveLabel: '移除',
+
+  /* uploadFiles */
+  uploadFilesEmptyContainer: '将图片拖放到此处',
+
+  /* addEditProduct */
+  addEditProductTitle: '产品标题',
+  addEditProductPlaceHolder: '产品标题',
+  addEditProductBriefDescriptionLabel: '总结 / 简短描述',
+  addEditProductBriefDescriptionPlaceholder: '简短描述',
+  addEditProductCategoryLabel: '类别',
+  addEditProductPriceLabel: '价格 $',
+  addEditProductPricePlaceholder: '价格 $',
+  addEditProductDiscountLabel: '折扣 % (0-100)',
+  addEditProductDiscountPlaceholder: '折扣 ',
+  addEditProductReleaseLabel: '发布日期',
+  addEditProductPublishCheckboxLabel: '在主页上发布此产品',
+
+  /* addProduct */
+  addProductSuccessfullyUpdated: '产品已成功更新',
+  addProductSuccessfullyAddImages: '产品成功创建，您现在可以为该产品添加图片。',
+  addProductErrorAddingProduct: '保存文件时出现问题，请检查输入的数据并重试',
+  addProductErrorUploadingFiles: '保存文件时出现问题，请检查输入的数据并重试',
+  addProductTitleForEdition: '产品详情',
+  addProductSaveChangesButtonLabel: '保存更改',
+  addProductCreateProductButtonLabel: '创建',
+
+  /* addEditProductPicture */
+  addEditProductPictureErrorFileSize: '文件错误：请确保文件大小小于1MB。',
+  addEditProductPictureSuccessfullyRemoved: '成功移除',
+  addEditProductPictureMainPictureRemoved: '主图已移除',
+  addEditProductPictureErrorRemovingMainPic: '尝试移除主图时出错',
+  addEditProductPictureUploadPictureLabel: '上传图片',
+  addEditProductPictureMultiplePictureTitle: '为产品图库添加多张图片',
+  addEditProductPicturePicsAdded: '图片已添加到产品',
+  addEditProductPictureImageGalleryEmpty: '该产品的图片库为空',
+
+  /* productManagementProducts */
+  productManagementProductsPictureHeader: '图片',
+  productManagementProductsTitleHeader: '标题',
+  productManagementProductsPriceHeader: '价格',
+  productManagementProductsCategoryHeader: '类别',
+  productManagementProductsOptionsHeader: '选项',
 
   /****************************************************************
    *                Other Messagess

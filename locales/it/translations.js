@@ -288,6 +288,7 @@ export const TRANSLATION_IT = {
   pmProdManagementTitle: 'Gestione dei Prodotti',
   pmProdManagementTotalCategories: 'Totale Categorie',
   pmProdManagementtotalProducts: 'Totale Prodotti',
+  pmProdManagementProdLabelButtonAdd: 'Aggiungi prodotto',
   pmAcceptRemoveProductTitle: 'Confermato',
   pmProductRemovedSuccessfully: 'Il prodotto selezionato è stato rimosso.',
   pmProductTitleError: 'Errore',
@@ -439,6 +440,66 @@ export const TRANSLATION_IT = {
   /* account */
   accountConfigurationTitle: 'Configurazione',
   accountAddressTitle: 'Indirizzi',
+
+  /* pictureGallery */
+  pictureGalleryConfirmDeleteSummary: 'Rimosso con successo',
+  pictureGalleryConfirmDeleteDetail:
+    "L'immagine è stata rimossa dalla galleria",
+  pictureGalleryConfirmDeleteRejected: 'Operazione annullata',
+  pictureGalleryConfirmDeleteRejectedSummary: 'Rifiutato',
+  pictureGalleryConfirmDeleteQuestion: 'Vuoi eliminare questo record?',
+  pictureGalleryConfirmDeleteHeader: 'Conferma eliminazione',
+  pictureGalleryProductRemoveLabel: 'Rimuovi',
+
+  /* uploadFiles */
+  uploadFilesEmptyContainer: "Trascina e rilascia l'immagine qui",
+
+  /* addEditProduct */
+  addEditProductTitle: 'Titolo del prodotto',
+  addEditProductPlaceHolder: 'Titolo del prodotto',
+  addEditProductBriefDescriptionLabel: 'Riepilogo / Breve descrizione',
+  addEditProductBriefDescriptionPlaceholder: 'Breve descrizione',
+  addEditProductCategoryLabel: 'Categoria',
+  addEditProductPriceLabel: 'Prezzo $',
+  addEditProductPricePlaceholder: 'Prezzo $',
+  addEditProductDiscountLabel: 'Sconto % (0-100)',
+  addEditProductDiscountPlaceholder: 'Sconto ',
+  addEditProductReleaseLabel: 'Data di rilascio',
+  addEditProductPublishCheckboxLabel:
+    'Pubblica questo prodotto nella pagina principale',
+
+  /* addProduct */
+  addProductSuccessfullyUpdated: 'Prodotto aggiornato con successo',
+  addProductSuccessfullyAddImages:
+    'Prodotto creato con successo, ora puoi aggiungere immagini al prodotto.',
+  addProductErrorAddingProduct:
+    'Qualcosa è andato storto durante il salvataggio del file, controlla i dati inseriti e riprova',
+  addProductErrorUploadingFiles:
+    'Qualcosa è andato storto durante il salvataggio del file, controlla i dati inseriti e riprova',
+  addProductTitleForEdition: 'Dettagli del prodotto',
+  addProductSaveChangesButtonLabel: 'Salva modifiche',
+  addProductCreateProductButtonLabel: 'Crea',
+
+  /* addEditProductPicture */
+  addEditProductPictureErrorFileSize:
+    'Errore del file: Assicurati che la dimensione del file sia inferiore a 1 MB.',
+  addEditProductPictureSuccessfullyRemoved: 'Rimosso con successo',
+  addEditProductPictureMainPictureRemoved: 'La foto principale è stata rimossa',
+  addEditProductPictureErrorRemovingMainPic:
+    'Errore durante il tentativo di rimuovere la foto principale',
+  addEditProductPictureUploadPictureLabel: 'Carica una foto',
+  addEditProductPictureMultiplePictureTitle:
+    'Aggiungi più foto per la Galleria del Prodotto',
+  addEditProductPicturePicsAdded: 'Foto aggiunte al prodotto',
+  addEditProductPictureImageGalleryEmpty:
+    'La galleria di immagini è vuota per questo prodotto',
+
+  /* productManagementProducts */
+  productManagementProductsPictureHeader: 'Immagine',
+  productManagementProductsTitleHeader: 'Titolo',
+  productManagementProductsPriceHeader: 'Prezzo',
+  productManagementProductsCategoryHeader: 'Categoria',
+  productManagementProductsOptionsHeader: 'Opzioni',
 
   /****************************************************************
    *                Other Messagess

@@ -37,7 +37,7 @@
     "jest.setup.js",
     "home.test.tsx",
     "__tests__/home.test.tsx"
-  ],
+, "api/producto.js"  ],
   "exclude": [
     "node_modules"
   ]

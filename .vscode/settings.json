@@ -3,5 +3,14 @@
         "activityBar.background": "#ab463f",
         "titleBar.inactiveBackground": "#ab463f",
     },
-    "CodeGPT.apiKey": "CodeGPT Plus Beta"
+    "CodeGPT.apiKey": "CodeGPT Plus Beta",
+    "background.fullscreen": {
+        "images": [
+            "https://c7.alamy.com/comp/2J4M0RP/skull-pirate-online-cyberattack-hack-threat-and-breach-security-symbol-digital-concept-network-cyber-technology-and-computer-background-abstract-2J4M0RP.jpg"
+        ],
+        "opacity": 0.96,
+        "size": "cover",
+        "position": "center",
+        "interval": 0
+    }
 }

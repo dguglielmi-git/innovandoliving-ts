@@ -1,53 +1,19 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react';
+import React, { useMemo, useRef, useState } from 'react';
+import { useRouter } from 'next/router';
+import { useTranslation } from 'react-i18next';
+import { Toast } from 'primereact/toast';
+import { Image } from 'primereact/image';
+import { Button } from 'primereact/button';
+import { Tooltip } from 'primereact/tooltip';
 import { IconField } from 'primereact/iconfield';
 import { InputIcon } from 'primereact/inputicon';
 import { InputText } from 'primereact/inputtext';
-import { Toast } from 'primereact/toast';
-import { Image } from 'primereact/image';
-import { ConfirmDialogProps, ConfirmDialogReturn } from 'primereact/confirmdialog';
-import { Paginator, PaginatorFirstPageLinkOptions, PaginatorPageChangeEvent } from 'primereact/paginator';
-import { Tooltip } from 'primereact/tooltip';
-import { Product } from '@/types/models/Product';
-import { numToDollar } from '@/utils/util';
+import { Paginator, PaginatorPageChangeEvent } from 'primereact/paginator';
 import useAuth from '@/hooks/useAuth';
+import { numToDollar } from '@/utils/util';
+import { SYSTEM_URL } from '@/utils/common';
 import { deleteProduct } from '@/api/producto';
-import { useTranslation } from 'react-i18next';
-
-const tableHeaders = [
-  {
-    id: 1,
-    header: 'Picture',
-    colSize: 'mid',
-  },
-  {
-    id: 2,
-    header: 'Title',
-    colSize: 'large',
-  },
-  {
-    id: 3,
-    header: 'Price',
-    colSize: 'mid',
-  },
-  {
-    id: 4,
-    header: 'Category',
-    colSize: 'mid',
-  },
-  {
-    id: 5,
-    header: 'Options',
-    colSize: 'mid',
-  },
-];
-interface ProductsProps {
-  products?: Product[] | [];
-  updateProductList: () => void;
-  search: string;
-  updateSearch: (value: string) => void;
-  confirmDialog: (props: ConfirmDialogProps) => ConfirmDialogReturn;
-  closeDeleteDialog: () => void;
-}
+import { ProductsProps, RowProductProps } from './interface';
 
 const Products = ({
   products,
@@ -62,21 +28,40 @@ const Products = ({
   const { logout } = useAuth();
   const [first, setFirst] = useState<number>(0);
   const [rows, setRows] = useState<number>(10);
+  const router = useRouter();
+
+  const tableHeaders = [
+    {
+      id: 1,
+      header: t('productManagementProductsPictureHeader'),
+      colSize: 'mid',
+    },
+    {
+      id: 2,
+      header: t('productManagementProductsTitleHeader'),
+      colSize: 'large',
+    },
+    {
+      id: 3,
+      header: t('productManagementProductsPriceHeader'),
+      colSize: 'mid',
+    },
+    {
+      id: 4,
+      header: t('productManagementProductsCategoryHeader'),
+      colSize: 'mid',
+    },
+    {
+      id: 5,
+      header: t('productManagementProductsOptionsHeader'),
+      colSize: 'mid',
+    },
+  ];
 
   const onPageChange = (event: PaginatorPageChangeEvent) => {
     setFirst(event.first);
     setRows(event.rows);
   };
-
-  interface RowProductProps {
-    id: string;
-    productImage: string;
-    title: string;
-    price: string;
-    category: string;
-    edit?: () => void;
-    remove?: () => void;
-  }
 
   const showToast = (
     severity: 'success' | 'info' | 'warn' | 'error' | undefined,
@@ -144,7 +129,11 @@ const Products = ({
       </article>
       <article className='mid'>
         <Tooltip target='.edit' content={t('pmProductEditTooltip')} position='bottom' />
-        <i className='pi pi-pencil edit' style={{ fontSize: '1.5rem', color: '#3723c7' }} />
+        <i
+          className='pi pi-pencil edit'
+          style={{ fontSize: '1.5rem', color: '#3723c7' }}
+          onClick={() => router.push(`/productmanagement/addproduct?edit=${id}`)}
+        />
         <Tooltip target='.remove' content={t('pmProductRemoveTooltip')} position='bottom' />
         <i className='pi pi-trash remove' style={{ fontSize: '1.5rem', color: '#910c0c' }} onClick={remove} />
       </article>
@@ -153,7 +142,7 @@ const Products = ({
 
   const paginatedProducts = useMemo(() => {
     return products?.slice(first, first + rows);
-  }, [first]);
+  }, [first, products]);
 
   return (
     <section className='product-management__products'>
@@ -169,6 +158,14 @@ const Products = ({
             placeholder={t('pmProductSearchPlaceholder')}
           />
         </IconField>
+        <Button
+          label={t('pmProdManagementProdLabelButtonAdd')}
+          severity='info'
+          iconPos='left'
+          icon='pi pi-plus'
+          rounded
+          onClick={() => router.push(SYSTEM_URL.ADD_A_PRODUCT)}
+        />
       </section>
 
       <section className='product-management__products__table'>

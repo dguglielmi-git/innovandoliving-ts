@@ -282,12 +282,14 @@ export const TRANSLATION_EN = {
   pmCategoryLabelButtonAdd: 'Add',
   pmCategoryUpdateModalTitle: 'Add Category',
   pmCategoryUpdateModalCancelButton: 'Cancel',
-  pmCategoryRemoveTooltip:'Remove',
-  pmAddCategoryModalMsg: 'Type the name for the new category and then press the `Add` button. ',
+  pmCategoryRemoveTooltip: 'Remove',
+  pmAddCategoryModalMsg:
+    'Type the name for the new category and then press the `Add` button. ',
   pmAddCategoryModalPlaceholder: 'New Category',
   pmProdManagementTitle: 'Product Management',
   pmProdManagementTotalCategories: 'Total Categories',
   pmProdManagementtotalProducts: 'Total Products',
+  pmProdManagementProdLabelButtonAdd: 'Add Product',
   pmAcceptRemoveProductTitle: 'Confirmed',
   pmProductRemovedSuccessfully: 'The selected product has been removed.',
   pmProductTitleError: 'Error',
@@ -297,10 +299,9 @@ export const TRANSLATION_EN = {
   pmProductRemoveConfirm: 'Do you want to delete this product?',
   pmProductDeleteConfirmation: 'Delete Confirmation',
   pmProductEditTooltip: 'Edit',
-  pmProductRemoveTooltip:'Remove',
+  pmProductRemoveTooltip: 'Remove',
   pmProductTitle: 'Products',
   pmProductSearchPlaceholder: 'Search',
-
 
   /* Status */
   statusOrdered: 'Ordered',
@@ -438,6 +439,63 @@ export const TRANSLATION_EN = {
   /* account */
   accountConfigurationTitle: 'Configuration',
   accountAddressTitle: 'Addresses',
+
+  /* pictureGallery */
+  pictureGalleryConfirmDeleteSummary: 'Successfully Removed',
+  pictureGalleryConfirmDeleteDetail: 'Picture was removed from the Gallery',
+  pictureGalleryConfirmDeleteRejected: 'Operation cancelled',
+  pictureGalleryConfirmDeleteRejectedSummary: 'Rejected',
+  pictureGalleryConfirmDeleteQuestion: 'Do you want to delete this record?',
+  pictureGalleryConfirmDeleteHeader: 'Delete Confirmation',
+  pictureGalleryProductRemoveLabel: 'Remove',
+
+  /* uploadFiles */
+  uploadFilesEmptyContainer: 'Drag and Drop Image Here',
+
+  /* addEditProduct */
+  addEditProductTitle: 'Product Title',
+  addEditProductPlaceHolder: 'Product Title',
+  addEditProductBriefDescriptionLabel: 'Summary / Brief Description',
+  addEditProductBriefDescriptionPlaceholder: 'Brief description',
+  addEditProductCategoryLabel: 'Category',
+  addEditProductPriceLabel: 'Price $',
+  addEditProductPricePlaceholder: 'Price $',
+  addEditProductDiscountLabel: 'Discount % (0-100)',
+  addEditProductDiscountPlaceholder: 'Discount ',
+  addEditProductReleaseLabel: 'Release Date',
+  addEditProductPublishCheckboxLabel: 'Publish this product on the main page',
+
+  /* addProduct */
+  addProductSuccessfullyUpdated: 'Product was successfully updated',
+  addProductSuccessfullyAddImages:
+    'Product created successfully, you can now add images to the product.',
+  addProductErrorAddingProduct:
+    'Something went wrong trying to save the file, review the data added and try again',
+  addProductErrorUploadingFiles:
+    'Something went wrong trying to save the file, review the data added and try again',
+  addProductTitleForEdition: 'Product Details',
+  addProductSaveChangesButtonLabel: 'Save Changes',
+  addProductCreateProductButtonLabel: 'Create',
+
+  /* addEditProductPicture */
+  addEditProductPictureErrorFileSize:
+    'File error: Please ensure the file size is less than 1MB.',
+  addEditProductPictureSuccessfullyRemoved: 'Successfully Removed',
+  addEditProductPictureMainPictureRemoved: 'Main picture was removed',
+  addEditProductPictureErrorRemovingMainPic:
+    'Error trying to remove the main picture',
+  addEditProductPictureUploadPictureLabel: 'Upload a Picture',
+  addEditProductPictureMultiplePictureTitle: `Add multiple pictures for the Product's Gallery`,
+  addEditProductPicturePicsAdded: 'Pictures Added to the product',
+  addEditProductPictureImageGalleryEmpty:
+    'Image Gallery is empty for this product',
+
+  /* productManagementProducts  */
+  productManagementProductsPictureHeader: 'Picture',
+  productManagementProductsTitleHeader: 'Title',
+  productManagementProductsPriceHeader: 'Price',
+  productManagementProductsCategoryHeader: 'Category',
+  productManagementProductsOptionsHeader: 'Options',
 
   /****************************************************************
    *                Other Messagess

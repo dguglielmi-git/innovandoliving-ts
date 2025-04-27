@@ -274,38 +274,43 @@ export const TRANSLATION_DE = {
 
   /* Product Management */
   pmCategoryRemovedSuccessfully: 'Der ausgewählte Eintrag wurde entfernt.',
-pmErrorRemovingCategory: 'Fehler beim Versuch, die ausgewählte Kategorie zu entfernen.',
-pmOperationCancelCategory: 'Operation abgebrochen',
-pmRemoveCategoryDialog: 'Möchten Sie diese Kategorie löschen?',
-pmRemoveCategoryDialogTitle: 'Löschbestätigung',
-pmCategoryAddedSuccessfully: 'Die neue Kategorie wurde erfolgreich hinzugefügt.',
-pmCategoryTitleAddedSuccessfully: 'Bestätigt',
-pmCategoryTitleAddError: 'Fehler',
-pmCategoryTitleAddRejected: 'Abgelehnt',
-pmCategoryTitle: 'Kategorien',
-pmCategoryLabelTitle: 'Titel',
-pmCategoryLabelOptions: 'Optionen',
-pmCategoryLabelButtonAdd: 'Hinzufügen',
-pmCategoryUpdateModalTitle: 'Kategorie hinzufügen',
-pmCategoryUpdateModalCancelButton: 'Abbrechen',
-pmCategoryRemoveTooltip: 'Entfernen',
-pmAddCategoryModalMsg: 'Geben Sie den Namen der neuen Kategorie ein und drücken Sie dann die Schaltfläche `Hinzufügen`.',
-pmAddCategoryModalPlaceholder: 'Neue Kategorie',
-pmProdManagementTitle: 'Produktverwaltung',
-pmProdManagementTotalCategories: 'Gesamtzahl der Kategorien',
-pmProdManagementtotalProducts: 'Gesamtzahl der Produkte',
-pmAcceptRemoveProductTitle: 'Bestätigt',
-pmProductRemovedSuccessfully: 'Das ausgewählte Produkt wurde entfernt.',
-pmProductTitleError: 'Fehler',
-pmProductTitleRejected: 'Abgelehnt',
-pmProductErrorRemoving: 'Fehler beim Versuch, das ausgewählte Produkt zu entfernen.',
-pmProductOperationCancel: 'Operation abgebrochen.',
-pmProductRemoveConfirm: 'Möchten Sie dieses Produkt löschen?',
-pmProductDeleteConfirmation: 'Löschbestätigung',
-pmProductEditTooltip: 'Bearbeiten',
-pmProductRemoveTooltip: 'Entfernen',
-pmProductTitle: 'Produkte',
-pmProductSearchPlaceholder: 'Suchen',
+  pmErrorRemovingCategory:
+    'Fehler beim Versuch, die ausgewählte Kategorie zu entfernen.',
+  pmOperationCancelCategory: 'Operation abgebrochen',
+  pmRemoveCategoryDialog: 'Möchten Sie diese Kategorie löschen?',
+  pmRemoveCategoryDialogTitle: 'Löschbestätigung',
+  pmCategoryAddedSuccessfully:
+    'Die neue Kategorie wurde erfolgreich hinzugefügt.',
+  pmCategoryTitleAddedSuccessfully: 'Bestätigt',
+  pmCategoryTitleAddError: 'Fehler',
+  pmCategoryTitleAddRejected: 'Abgelehnt',
+  pmCategoryTitle: 'Kategorien',
+  pmCategoryLabelTitle: 'Titel',
+  pmCategoryLabelOptions: 'Optionen',
+  pmCategoryLabelButtonAdd: 'Hinzufügen',
+  pmCategoryUpdateModalTitle: 'Kategorie hinzufügen',
+  pmCategoryUpdateModalCancelButton: 'Abbrechen',
+  pmCategoryRemoveTooltip: 'Entfernen',
+  pmAddCategoryModalMsg:
+    'Geben Sie den Namen der neuen Kategorie ein und drücken Sie dann die Schaltfläche `Hinzufügen`.',
+  pmAddCategoryModalPlaceholder: 'Neue Kategorie',
+  pmProdManagementTitle: 'Produktverwaltung',
+  pmProdManagementTotalCategories: 'Gesamtzahl der Kategorien',
+  pmProdManagementtotalProducts: 'Gesamtzahl der Produkte',
+  pmProdManagementProdLabelButtonAdd: 'Produkt hinzufügen',
+  pmAcceptRemoveProductTitle: 'Bestätigt',
+  pmProductRemovedSuccessfully: 'Das ausgewählte Produkt wurde entfernt.',
+  pmProductTitleError: 'Fehler',
+  pmProductTitleRejected: 'Abgelehnt',
+  pmProductErrorRemoving:
+    'Fehler beim Versuch, das ausgewählte Produkt zu entfernen.',
+  pmProductOperationCancel: 'Operation abgebrochen.',
+  pmProductRemoveConfirm: 'Möchten Sie dieses Produkt löschen?',
+  pmProductDeleteConfirmation: 'Löschbestätigung',
+  pmProductEditTooltip: 'Bearbeiten',
+  pmProductRemoveTooltip: 'Entfernen',
+  pmProductTitle: 'Produkte',
+  pmProductSearchPlaceholder: 'Suchen',
 
   /* Status */
   statusOrdered: 'Bestellt',
@@ -445,6 +450,65 @@ pmProductSearchPlaceholder: 'Suchen',
   /* account */
   accountConfigurationTitle: 'Aufbau',
   accountAddressTitle: 'Adressen',
+
+  /* pictureGallery */
+  pictureGalleryConfirmDeleteSummary: 'Erfolgreich entfernt',
+  pictureGalleryConfirmDeleteDetail: 'Bild wurde aus der Galerie entfernt',
+  pictureGalleryConfirmDeleteRejected: 'Vorgang abgebrochen',
+  pictureGalleryConfirmDeleteRejectedSummary: 'Abgelehnt',
+  pictureGalleryConfirmDeleteQuestion: 'Möchten Sie diesen Eintrag löschen?',
+  pictureGalleryConfirmDeleteHeader: 'Löschbestätigung',
+  pictureGalleryProductRemoveLabel: 'Entfernen',
+
+  /* uploadFiles */
+  uploadFilesEmptyContainer: 'Bild hierher ziehen und ablegen',
+
+  /* addEditProduct */
+  addEditProductTitle: 'Produkttitel',
+  addEditProductPlaceHolder: 'Produkttitel',
+  addEditProductBriefDescriptionLabel: 'Zusammenfassung / Kurzbeschreibung',
+  addEditProductBriefDescriptionPlaceholder: 'Kurzbeschreibung',
+  addEditProductCategoryLabel: 'Kategorie',
+  addEditProductPriceLabel: 'Preis $',
+  addEditProductPricePlaceholder: 'Preis $',
+  addEditProductDiscountLabel: 'Rabatt % (0-100)',
+  addEditProductDiscountPlaceholder: 'Rabatt ',
+  addEditProductReleaseLabel: 'Veröffentlichungsdatum',
+  addEditProductPublishCheckboxLabel:
+    'Dieses Produkt auf der Hauptseite veröffentlichen',
+
+  /* addProduct */
+  addProductSuccessfullyUpdated: 'Produkt wurde erfolgreich aktualisiert',
+  addProductSuccessfullyAddImages:
+    'Produkt erfolgreich erstellt, Sie können nun Bilder zum Produkt hinzufügen.',
+  addProductErrorAddingProduct:
+    'Es gab ein Problem beim Speichern der Datei, überprüfen Sie die eingegebenen Daten und versuchen Sie es erneut',
+  addProductErrorUploadingFiles:
+    'Es gab ein Problem beim Hochladen der Datei, überprüfen Sie die eingegebenen Daten und versuchen Sie es erneut',
+  addProductTitleForEdition: 'Produktdetails',
+  addProductSaveChangesButtonLabel: 'Änderungen speichern',
+  addProductCreateProductButtonLabel: 'Erstellen',
+
+  /* addEditProductPicture */
+  addEditProductPictureErrorFileSize:
+    'Dateifehler: Bitte stellen Sie sicher, dass die Dateigröße kleiner als 1 MB ist.',
+  addEditProductPictureSuccessfullyRemoved: 'Erfolgreich entfernt',
+  addEditProductPictureMainPictureRemoved: 'Das Hauptbild wurde entfernt',
+  addEditProductPictureErrorRemovingMainPic:
+    'Fehler beim Versuch, das Hauptbild zu entfernen',
+  addEditProductPictureUploadPictureLabel: 'Bild hochladen',
+  addEditProductPictureMultiplePictureTitle:
+    'Mehrere Bilder zur Produktgalerie hinzufügen',
+  addEditProductPicturePicsAdded: 'Bilder zum Produkt hinzugefügt',
+  addEditProductPictureImageGalleryEmpty:
+    'Die Bildgalerie ist für dieses Produkt leer',
+
+  /* productManagementProducts */
+  productManagementProductsPictureHeader: 'Bild',
+  productManagementProductsTitleHeader: 'Titel',
+  productManagementProductsPriceHeader: 'Preis',
+  productManagementProductsCategoryHeader: 'Kategorie',
+  productManagementProductsOptionsHeader: 'Optionen',
 
   /****************************************************************
    *                Other Messagess

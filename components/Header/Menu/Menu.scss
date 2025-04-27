@@ -59,7 +59,9 @@
 .languages-box {
   display: flex;
   flex-direction: column;
-  width: 100px;
+  width: 130px;
+  padding: 10px;
+
 
   &:hover {
     cursor: pointer;
@@ -67,6 +69,13 @@
 
   .lang-list {
     display: flex;
+    margin-bottom: 5px;
+    font-weight: bolder;
+
+    &:hover {
+      background-color: rgba(241, 233, 245, 0.8);
+      border-radius: 5px;
+    }
 
     &__text {
       margin-left: 10px;

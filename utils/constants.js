@@ -20,7 +20,7 @@ export const DEFAULT_LIMIT_MAIN_PRODUCTS = 50;
 export const DEFAULT_SORT_PRODUCT_ITEMS =
   "sort=createAt:-1&publish=true&limit=";
 export const FILTER_PRODUCTS_BY_PLATFORM = "sort=createAt:-1&skip=";
-export const FILTER_SORTED_PLATFORMS = "sort=position:-1";
+export const FILTER_SORTED_PLATFORMS = "sort=position:asc";
 
 export const STEP_VERIFY_PRODUCTS = 0;
 export const STEP_DELIVERY_OPTIONS = 1;

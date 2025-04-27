@@ -12,7 +12,6 @@ export default function Producto () {
   const getProducts = async () => {
     const response = await getProductByID(query.producto)
     setProducto(response)
-    console.log(response)
   }
 
   useEffect(() => {

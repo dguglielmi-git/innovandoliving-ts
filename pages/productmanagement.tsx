@@ -1,15 +1,15 @@
 import React, { useCallback, useEffect, useState } from 'react';
+import { size } from 'lodash';
 import BasicLayout from '../layouts/BasicLayout';
-import Category from '../components/ProductManagement/Category/Category';
-import Products from '../components/ProductManagement/Products';
-import ProductManagementTitle from '../components/ProductManagement/ProdManagementTitle/ProdManagementTitle';
+import Products from '@/components/ProductManagement/Products';
+import BasicLoading from '@/components/BasicLoading/BasicLoading';
+import Category from '@/components/ProductManagement/Category/Category';
+import ProductManagementTitle from '@/components/ProductManagement/ProdManagementTitle/ProdManagementTitle';
+import { getAllProducts } from '@/api/producto';
 import { getSortedPlatforms } from '../api/platform';
 import { Product } from '../types/models/Product';
 import { Platform } from '../types/models/Platform';
-import { getAllProducts } from '@/api/producto';
-import { size } from 'lodash';
 import useAuth from '@/hooks/useAuth';
-import BasicLoading from '@/components/BasicLoading/BasicLoading';
 import { ConfirmDialog, confirmDialog } from 'primereact/confirmdialog';
 
 export default function ProductManagement() {

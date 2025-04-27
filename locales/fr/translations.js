@@ -292,6 +292,7 @@ export const TRANSLATION_FR = {
   pmProdManagementTitle: 'Gestion des produits',
   pmProdManagementTotalCategories: 'Total des catégories',
   pmProdManagementtotalProducts: 'Total des produits',
+  pmProdManagementProdLabelButtonAdd: 'Ajouter un produit',
   pmAcceptRemoveProductTitle: 'Confirmé',
   pmProductRemovedSuccessfully: 'Le produit sélectionné a été supprimé.',
   pmProductTitleError: 'Erreur',
@@ -442,6 +443,66 @@ export const TRANSLATION_FR = {
   /* account */
   accountConfigurationTitle: 'Configuration',
   accountAddressTitle: 'Adresses',
+
+  /* pictureGallery */
+  pictureGalleryConfirmDeleteSummary: 'Supprimé avec succès',
+  pictureGalleryConfirmDeleteDetail: "L'image a été supprimée de la galerie",
+  pictureGalleryConfirmDeleteRejected: 'Opération annulée',
+  pictureGalleryConfirmDeleteRejectedSummary: 'Rejeté',
+  pictureGalleryConfirmDeleteQuestion:
+    'Voulez-vous supprimer cet enregistrement ?',
+  pictureGalleryConfirmDeleteHeader: 'Confirmation de suppression',
+  pictureGalleryProductRemoveLabel: 'Supprimer',
+
+  /* uploadFiles */
+  uploadFilesEmptyContainer: "Glissez et déposez l'image ici",
+
+  /* addEditProduct */
+  addEditProductTitle: 'Titre du produit',
+  addEditProductPlaceHolder: 'Titre du produit',
+  addEditProductBriefDescriptionLabel: 'Résumé / Brève description',
+  addEditProductBriefDescriptionPlaceholder: 'Brève description',
+  addEditProductCategoryLabel: 'Catégorie',
+  addEditProductPriceLabel: 'Prix $',
+  addEditProductPricePlaceholder: 'Prix $',
+  addEditProductDiscountLabel: 'Remise % (0-100)',
+  addEditProductDiscountPlaceholder: 'Remise',
+  addEditProductReleaseLabel: 'Date de sortie',
+  addEditProductPublishCheckboxLabel:
+    'Publier ce produit sur la page principale',
+
+  /* addProduct */
+  addProductSuccessfullyUpdated: 'Le produit a été mis à jour avec succès',
+  addProductSuccessfullyAddImages:
+    'Le produit a été créé avec succès, vous pouvez maintenant ajouter des images au produit.',
+  addProductErrorAddingProduct:
+    "Une erreur s'est produite lors de la tentative de sauvegarde du fichier, vérifiez les données ajoutées et réessayez",
+  addProductErrorUploadingFiles:
+    "Une erreur s'est produite lors de la tentative de téléchargement du fichier, vérifiez les données ajoutées et réessayez",
+  addProductTitleForEdition: 'Détails du produit',
+  addProductSaveChangesButtonLabel: 'Enregistrer les modifications',
+  addProductCreateProductButtonLabel: 'Créer',
+
+  /* addEditProductPicture */
+  addEditProductPictureErrorFileSize:
+    'Erreur de fichier : Veuillez vous assurer que la taille du fichier est inférieure à 1 Mo.',
+  addEditProductPictureSuccessfullyRemoved: 'Supprimé avec succès',
+  addEditProductPictureMainPictureRemoved: "L'image principale a été supprimée",
+  addEditProductPictureErrorRemovingMainPic:
+    "Erreur lors de la tentative de suppression de l'image principale",
+  addEditProductPictureUploadPictureLabel: 'Télécharger une image',
+  addEditProductPictureMultiplePictureTitle:
+    'Ajouter plusieurs images à la galerie du produit',
+  addEditProductPicturePicsAdded: 'Images ajoutées au produit',
+  addEditProductPictureImageGalleryEmpty:
+    "La galerie d'images est vide pour ce produit",
+
+  /* productManagementProducts */
+  productManagementProductsPictureHeader: 'Image',
+  productManagementProductsTitleHeader: 'Titre',
+  productManagementProductsPriceHeader: 'Prix',
+  productManagementProductsCategoryHeader: 'Catégorie',
+  productManagementProductsOptionsHeader: 'Options',
 
   /****************************************************************
    *                Other Messagess
