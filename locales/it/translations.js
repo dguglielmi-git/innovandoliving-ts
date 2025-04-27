@@ -203,6 +203,7 @@ export const TRANSLATION_IT = {
   headerMenuAccount: 'Account',
   headerMenuProducts: 'Prodotti',
   headerMenuQueries: 'Interrogazioni',
+  headerMenuProductManagement: 'Gestione Prodotti',
 
   /* Orders - Order */
   orderTabActive: 'Ordini Attivi',

@@ -205,6 +205,7 @@ export const TRANSLATION_PT = {
   headerMenuAccount: 'Conta',
   headerMenuProducts: 'Produtos',
   headerMenuQueries: 'Consultas',
+  headerMenuProductManagement: 'Gestão de Produtos',
 
   /* Orders - Order */
   orderTabActive: 'Pedidos Ativos',

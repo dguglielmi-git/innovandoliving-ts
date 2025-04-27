@@ -206,6 +206,7 @@ export const TRANSLATION_NL = {
   headerMenuAccount: 'Rekening',
   headerMenuProducts: 'Producten',
   headerMenuQueries: 'Vragen',
+  headerMenuProductManagement: 'Productbeheer',
 
   /* Orders - Order */
   orderTabActive: 'Actieve Bestellingen',

@@ -7,7 +7,8 @@ import {
   LINK_TO_ORDERS,
   LINK_TO_WISHLIST,
   LINK_TO_SHOWROOM,
-  LINK_TO_ACCOUNT
+  LINK_TO_ACCOUNT,
+  LINK_TO_PRODUCT_MGMT
 } from '../../../utils/constants'
 import DropdownLanguages from './MenuItems/DropdownLanguages'
 
@@ -29,6 +30,12 @@ export default function LargeMenu (props) {
     <Menu secondary>
       {user ? (
         <>
+          <Link href={LINK_TO_PRODUCT_MGMT}>
+            <Menu.Item as='a'>
+              <Icon name='warehouse alternate' />
+              {t('headerMenuProductManagement')}
+            </Menu.Item>
+          </Link>
           <Link href={LINK_TO_QUESTIONS}>
             <Menu.Item as='a'>
               {queryCounter > 0 && (
@@ -80,9 +87,9 @@ export default function LargeMenu (props) {
           </Link>
 
           <Menu.Item onClick={logout}>
-          {/* <div className='m-0' onClick={logout}> */}
+            {/* <div className='m-0' onClick={logout}> */}
             <Icon name='power off' />
-          {/* </div> */}
+            {/* </div> */}
           </Menu.Item>
         </>
       ) : (

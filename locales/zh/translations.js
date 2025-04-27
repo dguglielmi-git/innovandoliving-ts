@@ -199,6 +199,7 @@ export const TRANSLATION_ZH = {
   headerMenuAccount: '帳戶',
   headerMenuProducts: '產品',
   headerMenuQueries: '查詢',
+  headerMenuProductManagement: '产品管理',
 
   /* Orders - Order */
   orderTabActive: '活动订单',
