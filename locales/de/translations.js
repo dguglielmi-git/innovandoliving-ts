@@ -211,6 +211,7 @@ export const TRANSLATION_DE = {
   headerMenuAccount: 'Konto',
   headerMenuProducts: 'Produkte',
   headerMenuQueries: 'Abfragen',
+  headerMenuProductManagement: 'Produktverwaltung',
 
   /* Orders - Order */
   orderTabActive: 'Aktive Bestellungen',

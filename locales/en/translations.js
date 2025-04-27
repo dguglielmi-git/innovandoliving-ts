@@ -205,6 +205,7 @@ export const TRANSLATION_EN = {
   headerMenuAccount: 'Account',
   headerMenuProducts: 'Products',
   headerMenuQueries: 'Queries',
+  headerMenuProductManagement: 'Product Management',
 
   /* Orders - Order */
   orderTabActive: 'Active Orders',
