@@ -503,6 +503,13 @@ export const TRANSLATION_DE = {
   addEditProductPictureImageGalleryEmpty:
     'Die Bildgalerie ist für dieses Produkt leer',
 
+  /* productManagementProducts */
+  productManagementProductsPictureHeader: 'Bild',
+  productManagementProductsTitleHeader: 'Titel',
+  productManagementProductsPriceHeader: 'Preis',
+  productManagementProductsCategoryHeader: 'Kategorie',
+  productManagementProductsOptionsHeader: 'Optionen',
+
   /****************************************************************
    *                Other Messagess
    ****************************************************************/

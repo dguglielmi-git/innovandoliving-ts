@@ -494,6 +494,13 @@ export const TRANSLATION_NL = {
   addEditProductPictureImageGalleryEmpty:
     'De afbeeldingsgalerij is leeg voor dit product',
 
+  /* productManagementProducts */
+  productManagementProductsPictureHeader: 'Afbeelding',
+  productManagementProductsTitleHeader: 'Titel',
+  productManagementProductsPriceHeader: 'Prijs',
+  productManagementProductsCategoryHeader: 'Categorie',
+  productManagementProductsOptionsHeader: 'Opties',
+
   /****************************************************************
    *                Other Messagess
    ****************************************************************/

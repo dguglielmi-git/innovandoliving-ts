@@ -494,6 +494,13 @@ export const TRANSLATION_IT = {
   addEditProductPictureImageGalleryEmpty:
     'La galleria di immagini è vuota per questo prodotto',
 
+  /* productManagementProducts */
+  productManagementProductsPictureHeader: 'Immagine',
+  productManagementProductsTitleHeader: 'Titolo',
+  productManagementProductsPriceHeader: 'Prezzo',
+  productManagementProductsCategoryHeader: 'Categoria',
+  productManagementProductsOptionsHeader: 'Opzioni',
+
   /****************************************************************
    *                Other Messagess
    ****************************************************************/

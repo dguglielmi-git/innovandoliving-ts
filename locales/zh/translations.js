@@ -472,6 +472,13 @@ export const TRANSLATION_ZH = {
   addEditProductPicturePicsAdded: '图片已添加到产品',
   addEditProductPictureImageGalleryEmpty: '该产品的图片库为空',
 
+  /* productManagementProducts */
+  productManagementProductsPictureHeader: '图片',
+  productManagementProductsTitleHeader: '标题',
+  productManagementProductsPriceHeader: '价格',
+  productManagementProductsCategoryHeader: '类别',
+  productManagementProductsOptionsHeader: '选项',
+
   /****************************************************************
    *                Other Messagess
    ****************************************************************/
