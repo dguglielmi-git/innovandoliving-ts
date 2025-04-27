@@ -1,6 +1,4 @@
-interface AddProductHeaderProps {
-  title: string;
-}
+import { AddProductHeaderProps } from './interface';
 
 const AddEditProductHeader = ({ title }: AddProductHeaderProps) => {
   return (

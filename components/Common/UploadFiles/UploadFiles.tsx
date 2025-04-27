@@ -1,4 +1,4 @@
-import React, { RefObject, useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import {
   FileUpload,
   FileUploadHeaderTemplateOptions,
@@ -15,15 +15,14 @@ import 'primeicons/primeicons.css';
 import 'primereact/resources/primereact.css';
 import 'primereact/resources/themes/lara-light-indigo/theme.css';
 import Image from 'next/image';
-
-interface UploadFilesProps {
-  filesReference: RefObject<FileUpload>;
-  setFormModified: () => void;
-}
+import { UploadFilesProps } from './interface';
+import { useTranslation } from 'react-i18next';
+import { MAX_UPLOAD_FILE_SIZE } from '@/utils/common';
 
 export default function UploadFiles({ filesReference, setFormModified }: UploadFilesProps) {
   const toast = useRef<Toast>(null);
   const [totalSize, setTotalSize] = useState(0);
+  const { t } = useTranslation();
 
   useEffect(() => {
     let _totalSize = totalSize;
@@ -114,7 +113,7 @@ export default function UploadFiles({ filesReference, setFormModified }: UploadF
           }}
         ></i>
         <span style={{ fontSize: '1.2em', color: 'var(--text-color-secondary)' }} className='my-5'>
-          Drag and Drop Image Here
+          {t('uploadFilesEmptyContainer')}
         </span>
       </div>
     );
@@ -143,7 +142,7 @@ export default function UploadFiles({ filesReference, setFormModified }: UploadF
         name='productpics[]'
         multiple
         accept='image/*'
-        maxFileSize={1000000}
+        maxFileSize={MAX_UPLOAD_FILE_SIZE}
         customUpload
         onSelect={onTemplateSelect}
         onError={onClearList}

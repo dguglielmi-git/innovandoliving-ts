@@ -440,6 +440,58 @@ export const TRANSLATION_PT = {
   accountConfigurationTitle: 'Configuração',
   accountAddressTitle: 'Endereços',
 
+  /* pictureGallery */
+  pictureGalleryConfirmDeleteSummary: 'Removido com sucesso',
+  pictureGalleryConfirmDeleteDetail: 'A imagem foi removida da galeria',
+  pictureGalleryConfirmDeleteRejected: 'Operação cancelada',
+  pictureGalleryConfirmDeleteRejectedSummary: 'Rejeitado',
+  pictureGalleryConfirmDeleteQuestion: 'Deseja excluir este registro?',
+  pictureGalleryConfirmDeleteHeader: 'Confirmação de Exclusão',
+  pictureGalleryProductRemoveLabel: 'Remover',
+
+  /* uploadFiles */
+  uploadFilesEmptyContainer: 'Arraste e solte a imagem aqui',
+
+  /* addEditProduct */
+  addEditProductTitle: 'Título do Produto',
+  addEditProductPlaceHolder: 'Título do Produto',
+  addEditProductBriefDescriptionLabel: 'Resumo / Breve Descrição',
+  addEditProductBriefDescriptionPlaceholder: 'Breve descrição',
+  addEditProductCategoryLabel: 'Categoria',
+  addEditProductPriceLabel: 'Preço $',
+  addEditProductPricePlaceholder: 'Preço $',
+  addEditProductDiscountLabel: 'Desconto % (0-100)',
+  addEditProductDiscountPlaceholder: 'Desconto ',
+  addEditProductReleaseLabel: 'Data de Lançamento',
+  addEditProductPublishCheckboxLabel:
+    'Publicar este produto na página principal',
+
+  /* addProduct */
+  addProductSuccessfullyUpdated: 'Produto atualizado com sucesso',
+  addProductSuccessfullyAddImages:
+    'Produto criado com sucesso, você pode agora adicionar imagens ao produto.',
+  addProductErrorAddingProduct:
+    'Ocorreu um erro ao tentar salvar o arquivo, verifique os dados inseridos e tente novamente',
+  addProductErrorUploadingFiles:
+    'Ocorreu um erro ao tentar salvar o arquivo, verifique os dados inseridos e tente novamente',
+  addProductTitleForEdition: 'Detalhes do Produto',
+  addProductSaveChangesButtonLabel: 'Salvar Alterações',
+  addProductCreateProductButtonLabel: 'Criar',
+
+  /* addEditProductPicture */
+  addEditProductPictureErrorFileSize:
+    'Erro de arquivo: Certifique-se de que o tamanho do arquivo seja inferior a 1MB.',
+  addEditProductPictureSuccessfullyRemoved: 'Removido com sucesso',
+  addEditProductPictureMainPictureRemoved: 'A imagem principal foi removida',
+  addEditProductPictureErrorRemovingMainPic:
+    'Erro ao tentar remover a imagem principal',
+  addEditProductPictureUploadPictureLabel: 'Carregar uma Foto',
+  addEditProductPictureMultiplePictureTitle:
+    'Adicionar várias fotos para a Galeria do Produto',
+  addEditProductPicturePicsAdded: 'Fotos adicionadas ao produto',
+  addEditProductPictureImageGalleryEmpty:
+    'A Galeria de Imagens está vazia para este produto',
+
   /****************************************************************
    *                Other Messagess
    ****************************************************************/

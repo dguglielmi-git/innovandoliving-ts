@@ -9,21 +9,11 @@ import { IconField } from 'primereact/iconfield';
 import { InputIcon } from 'primereact/inputicon';
 import { InputText } from 'primereact/inputtext';
 import { Paginator, PaginatorPageChangeEvent } from 'primereact/paginator';
-import { ConfirmDialogProps, ConfirmDialogReturn } from 'primereact/confirmdialog';
 import useAuth from '@/hooks/useAuth';
 import { numToDollar } from '@/utils/util';
 import { SYSTEM_URL } from '@/utils/common';
 import { deleteProduct } from '@/api/producto';
-import { Product } from '@/types/models/Product';
-
-interface ProductsProps {
-  products?: Product[] | [];
-  updateProductList: () => void;
-  search: string;
-  updateSearch: (value: string) => void;
-  confirmDialog: (props: ConfirmDialogProps) => ConfirmDialogReturn;
-  closeDeleteDialog: () => void;
-}
+import { ProductsProps, RowProductProps } from './interface';
 
 const Products = ({
   products,
@@ -43,27 +33,27 @@ const Products = ({
   const tableHeaders = [
     {
       id: 1,
-      header: 'Picture',
+      header: t('productManagementProductsPictureHeader'),
       colSize: 'mid',
     },
     {
       id: 2,
-      header: 'Title',
+      header: t('productManagementProductsTitleHeader'),
       colSize: 'large',
     },
     {
       id: 3,
-      header: 'Price',
+      header: t('productManagementProductsPriceHeader'),
       colSize: 'mid',
     },
     {
       id: 4,
-      header: 'Category',
+      header: t('productManagementProductsCategoryHeader'),
       colSize: 'mid',
     },
     {
       id: 5,
-      header: 'Options',
+      header: t('productManagementProductsOptionsHeader'),
       colSize: 'mid',
     },
   ];
@@ -72,16 +62,6 @@ const Products = ({
     setFirst(event.first);
     setRows(event.rows);
   };
-
-  interface RowProductProps {
-    id: string;
-    productImage: string;
-    title: string;
-    price: string;
-    category: string;
-    edit?: () => void;
-    remove?: () => void;
-  }
 
   const showToast = (
     severity: 'success' | 'info' | 'warn' | 'error' | undefined,

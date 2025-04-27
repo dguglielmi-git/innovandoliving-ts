@@ -3,53 +3,40 @@ import { Button } from 'primereact/button';
 import { Carousel, CarouselResponsiveOption } from 'primereact/carousel';
 import { ConfirmDialog, confirmDialog } from 'primereact/confirmdialog';
 import { Toast } from 'primereact/toast';
-import { GalleryFiles } from '@/api/product';
-
-interface PictureGalleryProps {
-  updateGallery: (option: string, urlImage?: string) => Promise<Boolean>;
-  screenshots: GalleryFiles[];
-}
+import { PictureGalleryProps } from './interface';
+import { carouselResponsiveOptionsList } from '@/utils/common';
+import { useTranslation } from 'react-i18next';
 
 export default function PictureGallery({ updateGallery, screenshots }: PictureGalleryProps) {
-  const responsiveOptions: CarouselResponsiveOption[] = [
-    {
-      breakpoint: '1400px',
-      numVisible: 2,
-      numScroll: 1,
-    },
-    {
-      breakpoint: '1199px',
-      numVisible: 3,
-      numScroll: 1,
-    },
-    {
-      breakpoint: '767px',
-      numVisible: 2,
-      numScroll: 1,
-    },
-    {
-      breakpoint: '575px',
-      numVisible: 1,
-      numScroll: 1,
-    },
-  ];
+  const { t } = useTranslation();
   const toast = useRef<Toast>(null);
+  const responsiveOptions: CarouselResponsiveOption[] = carouselResponsiveOptionsList;
 
   const confirmDelete = async (urlImage: string) => {
     const responseUpdate = await updateGallery('remove', urlImage);
     if (responseUpdate) {
-      toast.current?.show({ severity: 'info', summary: 'Successfully Removed', detail: 'Picture was remove from the Gallery', life: 3000 });
+      toast.current?.show({
+        severity: 'info',
+        summary: t('pictureGalleryConfirmDeleteSummary'),
+        detail: t('pictureGalleryConfirmDeleteDetail'),
+        life: 3000,
+      });
     }
   };
 
   const cancelDelete = () => {
-    toast.current?.show({ severity: 'warn', summary: 'Rejected', detail: 'You have rejected', life: 3000 });
+    toast.current?.show({
+      severity: 'warn',
+      summary: t('pictureGalleryConfirmDeleteRejectedSummary'),
+      detail: t('pictureGalleryConfirmDeleteRejected'),
+      life: 3000,
+    });
   };
 
   const openDeleteDialog = (urlImage: string) => {
     confirmDialog({
-      message: 'Do you want to delete this record?',
-      header: 'Delete Confirmation',
+      message: t('pictureGalleryConfirmDeleteQuestion'),
+      header: t('pictureGalleryConfirmDeleteHeader'),
       icon: 'pi pi-info-circle',
       defaultFocus: 'reject',
       acceptClassName: 'p-button-danger',
@@ -68,7 +55,7 @@ export default function PictureGallery({ updateGallery, screenshots }: PictureGa
           <div className='mt-5 flex flex-wrap gap-2 justify-content-center'>
             <Button
               icon='pi pi-trash'
-              label='Remove'
+              label={t('pictureGalleryProductRemoveLabel')}
               className='p-button p-button-rounded'
               type='button'
               onClick={() => openDeleteDialog(urlProduct)}

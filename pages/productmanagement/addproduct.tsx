@@ -1,5 +1,5 @@
 import { getSortedPlatforms } from '@/api/platform';
-import { GalleryFiles, Product, ProductDTO, saveProduct, updateProduct } from '@/api/product';
+import { saveProduct, updateProduct } from '@/api/product';
 import { getProductByID, uploadFileToS3 } from '@/api/producto';
 import { AddEditProductDetails } from '@/components/ProductManagement/AddEditProduct/AddEditProductDetails';
 import AddEditProductHeader from '@/components/ProductManagement/AddEditProduct/AddEditProductHeader';
@@ -13,6 +13,8 @@ import { FileUpload } from 'primereact/fileupload';
 import { useEffect, useRef, useState } from 'react';
 import { Icon, Button, Form } from 'semantic-ui-react';
 import * as Yup from 'yup';
+import { GalleryFiles, Product, ProductDTO } from '@/api/interface';
+import { useTranslation } from 'react-i18next';
 
 export default function AddProduct() {
   const mainPictureReference = useRef<FileUpload>(null);
@@ -27,6 +29,7 @@ export default function AddProduct() {
   const [formModified, setFormModified] = useState<Boolean>(false);
   const router = useRouter();
   const { edit: productId } = router.query;
+  const { t } = useTranslation();
 
   const getProductStructure = (): ProductDTO => ({
     summary: formik.values.productSummary,
@@ -165,7 +168,7 @@ export default function AddProduct() {
           const updateResultOperation = await uploadPictures();
           if (updateResultOperation) {
             getUpdatingProduct();
-            toast.success('Product was successfully updated');
+            toast.success(t('addProductSuccessfullyUpdated'));
           }
           setLoading(false);
         } else {
@@ -177,16 +180,16 @@ export default function AddProduct() {
           const responseNewProduct = await saveProduct(newProduct);
           if (!responseNewProduct.error && responseNewProduct._id) {
             router.push(`/productmanagement/addproduct?edit=${responseNewProduct._id}`);
-            toast.success('Product created successfully, you can now add images to the product.');
+            toast.success(t('addProductSuccessfullyAddImages'));
           } else {
             console.error('Error adding the new product');
-            toast.error('Something went wrong trying to save the file, review the data added and try again');
+            toast.error(t('addProductErrorAddingProduct'));
           }
           setLoading(false);
         }
       } catch (error) {
         console.error('Error uploading files:', error);
-        toast.error('Something went wrong trying to save the file, review the data added and try again');
+        toast.error(t('addProductErrorUploadingFiles'));
         setLoading(false);
       }
     },
@@ -275,7 +278,7 @@ export default function AddProduct() {
           </section>
           <section className='product-management__form-area'>
             <AddEditProductDetails
-              title='Product Details'
+              title={t('addProductTitleForEdition')}
               formik={formik}
               categories={categories}
               setFormModified={formHasBeenModified}
@@ -294,7 +297,7 @@ export default function AddProduct() {
           <section className='product-management__actions'>
             <Button type='submit' icon='save' loading={loading} disabled={!formModified}>
               <Icon name='save' />
-              {editionMode ? 'Save Changes' : 'Create'}
+              {editionMode ? t('addProductSaveChangesButtonLabel') : t('addProductCreateProductButtonLabel')}
             </Button>
           </section>
         </section>

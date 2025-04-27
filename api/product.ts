@@ -1,35 +1,6 @@
 import { fetchRetryParams } from '@/utils/fetch';
 import { getToken } from './token';
-
-export interface GalleryFiles {
-  url: string;
-}
-
-export interface Product {
-  title: string;
-  summary: string;
-  url: string;
-  platform: { _id: string };
-  releaseDate: string;
-  screenshots: GalleryFiles[];
-  price: {
-    $numberDecimal: number;
-  };
-  discount: number;
-  publish: boolean;
-}
-
-export interface ProductDTO {
-  title: string;
-  summary: string;
-  url: string;
-  platform: string;
-  releaseDate: string;
-  screenshots: GalleryFiles[];
-  price: number;
-  discount: number;
-  publish: boolean;
-}
+import { ProductDTO } from './interface';
 
 export async function saveProduct(product: ProductDTO) {
   try {

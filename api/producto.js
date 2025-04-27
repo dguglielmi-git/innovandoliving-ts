@@ -264,19 +264,18 @@ export async function uploadFileToS3 (file) {
     })
 
     if (result.ok) {
-      console.log('Archivo subido correctamente')
+      console.log('File successfully uploaded.')
       return { filename, error: '' }
     } else {
-      console.error('Error al subir el archivo', result)
+      console.error('Error uploading the file', result)
       return { error: `filename ${file.name} error` }
     }
   } catch (err) {
-    console.error('Error al subir archivo a S3:', err)
+    console.error('Error uploading the file to S3:', err)
     return { error: `filename ${file.name} error` }
   }
 }
 export async function uploadFile (body, fileName, fileType) {
-  // const url = `${process.env.NEXT_PUBLIC_URL_MERCADOPAGO_BACKEND}/productFile/upload?filename=${fileName}&filetype=${fileType}`
   const url = `http://localhost:5001/innovandoliving-mercadopago-cf/us-central1/innovandoLivingMP/productFile/upload?filename=${fileName}&filetype=${fileType}`
   try {
     const params = {
@@ -303,8 +302,6 @@ export async function saveProduct (product) {
     if (!token) {
       logout()
     }
-
-    console.log('product received', product)
 
     const body = JSON.stringify({
       summary: product.summary,

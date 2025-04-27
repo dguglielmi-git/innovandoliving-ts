@@ -1,12 +1,6 @@
 import { FormField } from 'semantic-ui-react';
-interface CustomInputProps {
-  label: string;
-  placeholder?: string;
-  name?: string;
-  onChange?: (e?: any, d?: any) => void;
-  cssClass?: string;
-  value?: string;
-}
+import { CustomInputProps } from './interface';
+
 const CustomInput = ({ label, placeholder, name, onChange, cssClass, value }: CustomInputProps) => {
   const customInputClass = cssClass ?? 'custom-input';
 

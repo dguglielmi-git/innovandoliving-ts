@@ -443,6 +443,57 @@ export const TRANSLATION_NL = {
   accountConfigurationTitle: 'Configuratie',
   accountAddressTitle: 'Adressen',
 
+  /* pictureGallery */
+  pictureGalleryConfirmDeleteSummary: 'Succesvol verwijderd',
+  pictureGalleryConfirmDeleteDetail: 'Foto is verwijderd uit de galerij',
+  pictureGalleryConfirmDeleteRejected: 'Operatie geannuleerd',
+  pictureGalleryConfirmDeleteRejectedSummary: 'Geweigerd',
+  pictureGalleryConfirmDeleteQuestion: 'Wil je dit record verwijderen?',
+  pictureGalleryConfirmDeleteHeader: 'Verwijderbevestiging',
+  pictureGalleryProductRemoveLabel: 'Verwijderen',
+
+  /* uploadFiles */
+  uploadFilesEmptyContainer: 'Sleep en zet hier een afbeelding neer',
+
+  /* addEditProduct */
+  addEditProductTitle: 'Producttitel',
+  addEditProductPlaceHolder: 'Producttitel',
+  addEditProductBriefDescriptionLabel: 'Samenvatting / Korte beschrijving',
+  addEditProductBriefDescriptionPlaceholder: 'Korte beschrijving',
+  addEditProductCategoryLabel: 'Categorie',
+  addEditProductPriceLabel: 'Prijs $',
+  addEditProductPricePlaceholder: 'Prijs $',
+  addEditProductDiscountLabel: 'Korting % (0-100)',
+  addEditProductDiscountPlaceholder: 'Korting ',
+  addEditProductReleaseLabel: 'Release datum',
+  addEditProductPublishCheckboxLabel: 'Publiceer dit product op de hoofdpagina',
+
+  /* addProduct */
+  addProductSuccessfullyUpdated: 'Product succesvol bijgewerkt',
+  addProductSuccessfullyAddImages:
+    'Product succesvol aangemaakt, je kunt nu afbeeldingen aan het product toevoegen.',
+  addProductErrorAddingProduct:
+    'Er is iets mis gegaan bij het opslaan van het bestand, controleer de ingevoerde gegevens en probeer het opnieuw',
+  addProductErrorUploadingFiles:
+    'Er is iets mis gegaan bij het opslaan van het bestand, controleer de ingevoerde gegevens en probeer het opnieuw',
+  addProductTitleForEdition: 'Productdetails',
+  addProductSaveChangesButtonLabel: 'Wijzigingen opslaan',
+  addProductCreateProductButtonLabel: 'Creëren',
+
+  /* addEditProductPicture */
+  addEditProductPictureErrorFileSize:
+    'Bestand fout: Zorg ervoor dat de bestandsgrootte minder dan 1 MB is.',
+  addEditProductPictureSuccessfullyRemoved: 'Succesvol Verwijderd',
+  addEditProductPictureMainPictureRemoved: 'Hoofdfoto is verwijderd',
+  addEditProductPictureErrorRemovingMainPic:
+    'Fout bij het proberen de hoofdfoto te verwijderen',
+  addEditProductPictureUploadPictureLabel: 'Upload een Foto',
+  addEditProductPictureMultiplePictureTitle:
+    "Voeg meerdere foto's toe voor de Product Galerij",
+  addEditProductPicturePicsAdded: "Foto's toegevoegd aan het product",
+  addEditProductPictureImageGalleryEmpty:
+    'De afbeeldingsgalerij is leeg voor dit product',
+
   /****************************************************************
    *                Other Messagess
    ****************************************************************/

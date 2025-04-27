@@ -2,20 +2,13 @@ import PictureGallery from '@/components/Common/PictureGallery/PictureGallery';
 import UploadFiles from '@/components/Common/UploadFiles/UploadFiles';
 import { Icon, Image } from 'semantic-ui-react';
 import { Divider } from 'primereact/divider';
-import { RefObject, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { FileUpload, FileUploadSelectEvent } from 'primereact/fileupload';
 import { Toast } from 'primereact/toast';
-import { GalleryFiles } from '@/api/product';
 import { Tooltip } from 'primereact/tooltip';
-
-interface AddEditProductPictureProps {
-  updateGallery: (option: string, urlImage?: string) => Promise<Boolean>;
-  urlMainPicture?: string;
-  mainPictureReference: RefObject<FileUpload>;
-  filesReference: RefObject<FileUpload>;
-  galleryUrl: GalleryFiles[];
-  setFormModified: () => void;
-}
+import { AddEditProductPictureProps } from './interface';
+import { useTranslation } from 'react-i18next';
+import { MAX_UPLOAD_FILE_SIZE } from '@/utils/common';
 
 const AddEditProductPicture = ({
   updateGallery,
@@ -26,13 +19,14 @@ const AddEditProductPicture = ({
   setFormModified,
 }: AddEditProductPictureProps) => {
   const toast = useRef<Toast>(null);
+  const { t } = useTranslation();
   const [mainPicture, setMainPicture] = useState<string | undefined>(undefined);
 
   const errorOnSelectedFile = () => {
     toast.current?.show({
       severity: 'error',
       summary: 'Error',
-      detail: 'File error: Please ensure the file size is less than 1MB.',
+      detail: t('addEditProductPictureErrorFileSize'),
     });
   };
   const isMainPictureAvailable = (): boolean =>
@@ -67,8 +61,8 @@ const AddEditProductPicture = ({
       if (resultUpdate) {
         toast.current?.show({
           severity: 'info',
-          summary: 'Successfully Removed',
-          detail: 'Main picture was removed',
+          summary: t('addEditProductPictureSuccessfullyRemoved'),
+          detail: t('addEditProductPictureMainPictureRemoved'),
           life: 3000,
         });
         setFormModified();
@@ -76,7 +70,7 @@ const AddEditProductPicture = ({
         toast.current?.show({
           severity: 'error',
           summary: 'Error',
-          detail: 'Error trying to remove the main picture',
+          detail: t('addEditProductPictureErrorRemovingMainPic'),
         });
       }
     } catch (error) {
@@ -100,9 +94,9 @@ const AddEditProductPicture = ({
             mode='basic'
             name='demo[]'
             url='/api/upload'
-            chooseLabel='Upload a Picture'
+            chooseLabel={t('addEditProductPictureUploadPictureLabel')}
             accept='image/*'
-            maxFileSize={1000000}
+            maxFileSize={MAX_UPLOAD_FILE_SIZE}
             onValidationFail={errorOnSelectedFile}
             onSelect={onFileSelected}
             onClear={onClearFile}
@@ -111,7 +105,7 @@ const AddEditProductPicture = ({
       </section>
 
       <section className='add-edit-product-picture__picture-gallery-upload'>
-        <label>Add multiple pictures for the Product's Gallery</label>
+        <label>{t('addEditProductPictureMultiplePictureTitle')}</label>
         <UploadFiles filesReference={filesReference} setFormModified={setFormModified} />
       </section>
 
@@ -119,12 +113,12 @@ const AddEditProductPicture = ({
         <Divider />
         {galleryUrl && galleryUrl.length > 0 ? (
           <>
-            <label>Pictures Added to the product</label>
+            <label>{t('addEditProductPicturePicsAdded')}</label>
             <PictureGallery screenshots={galleryUrl} updateGallery={updateGallery} />
           </>
         ) : (
           <article className='add-edit-product-picture__picture-gallery-empty'>
-            <label>Image Gallery is empty for this product</label>
+            <label>{t('addEditProductPictureImageGalleryEmpty')}</label>
           </article>
         )}
       </section>

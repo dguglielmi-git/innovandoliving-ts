@@ -1,13 +1,6 @@
 import { Calendar } from 'primereact/calendar';
-import { Nullable } from 'primereact/ts-helpers';
 import { FormField } from 'semantic-ui-react';
-
-interface CustomInputCalendarProps {
-  value: Nullable<Date>;
-  onChange: (e?: any, d?: any) => void;
-  name: string;
-  label: string;
-}
+import { CustomInputCalendarProps } from './interface';
 
 const CustomInputCalendar = ({ value, onChange, name, label }: CustomInputCalendarProps) => {
   return (
