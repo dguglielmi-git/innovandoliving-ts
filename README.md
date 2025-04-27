@@ -69,6 +69,7 @@ NEXT_PUBLIC_STRIPE_TOKEN=pk_test_51Ix2UOC5rKZURZ3Y6Z6GmYioksibjpEWgJdSRFnws9543f
 * [Internationalization i18n](https://react.i18next.com/) - react-i18next is a powerful internationalization framework for React / React Native which is based on i18next.
 * [lodash](https://lodash.com/) - A modern JavaScript utility library delivering modularity, performance & extras.
 * [SaSS](https://sass-lang.com/) - Sass is the most mature, stable, and powerful professional grade CSS extension language in the world.
+* [ChatGPT](https://chatgpt.com/) - For translation in different languages.
 
 
 
@@ -79,7 +80,7 @@ We used [SemVer](http://semver.org/) for versioning. Check out the whole version
 
 ## Author ✒️
 
-* **Daniel Guglielmi** - *Design, Architecture, Front-End, Backend, Documentation, Translation* - [dguglielmi-git](https://github.com/dguglielmi-git)
+* **Daniel Guglielmi** - *Design, Architecture, Front-End, Backend, Documentation* - [dguglielmi-git](https://github.com/dguglielmi-git)
 
 
 ## License 📄
