@@ -1,19 +1,20 @@
-import React from "react";
-import { Icon } from "semantic-ui-react";
-import { useRouter } from "next/router";
+import React from 'react'
+import { Icon } from 'semantic-ui-react'
+import { useRouter } from 'next/router'
 import {
   Button as ButtonUnstyled,
-  buttonClasses as buttonUnstyledClasses,
-} from "@mui/base/Button";
-import { styled } from "@mui/system";
+  buttonClasses as buttonUnstyledClasses
+} from '@mui/base/Button'
+import { styled } from '@mui/system'
+import GoBackButton from '../../Common/GoBackButton'
 
 const blue = {
-  500: "#007FFF",
-  600: "#0072E5",
-  700: "#0059B2",
-};
+  500: '#007FFF',
+  600: '#0072E5',
+  700: '#0059B2'
+}
 
-const ButtonBackRoot = styled("span")`
+const ButtonBackRoot = styled('span')`
   font-family: IBM Plex Sans, sans-serif;
   font-weight: bold;
   font-size: 0.875rem;
@@ -43,22 +44,22 @@ const ButtonBackRoot = styled("span")`
     opacity: 0.5;
     cursor: not-allowed;
   }
-`;
+`
 
-function ButtonBack(props) {
-  return <ButtonUnstyled {...props} component={ButtonBackRoot} />;
+function ButtonBack (props) {
+  return <ButtonUnstyled {...props} component={ButtonBackRoot} />
 }
 
-export default function ButtonContinueShop(props) {
-  const { label, icon, path } = props;
-  const router = useRouter();
+export default function ButtonContinueShop (props) {
+  const { label, icon, path } = props
+  const router = useRouter()
 
   return (
-    <div className="btn-continue-shopping">
-      <ButtonBack onClick={() => router.push(path || "/")}>
-        <Icon name={icon || "shopping basket"} />
+    <div className='btn-continue-shopping'>
+      <ButtonBack onClick={() => router.push(path || '/')}>
+        <Icon name={icon || 'shopping basket'} />
         {label}
       </ButtonBack>
     </div>
-  );
+  )
 }

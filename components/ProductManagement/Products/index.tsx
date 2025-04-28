@@ -149,6 +149,7 @@ const Products = ({
       <article className='product-management__products__title'>
         <h2 className='poppins-600-regular'>{t('pmProductTitle')}</h2>
       </article>
+      
       <section className='product-management__products__search'>
         <IconField iconPosition='left'>
           <InputIcon className='pi pi-search'> </InputIcon>
