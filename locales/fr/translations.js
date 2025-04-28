@@ -407,6 +407,10 @@ export const TRANSLATION_FR = {
     'Erreur lors de la tentative de mise à jour des paramètres',
   systemSettingsSuccessUpdating:
     'Les paramètres ont été mis à jour avec succès',
+  systemSettingsExternalProviderPrice:
+    'Prix de livraison pour un fournisseur externe',
+  systemSettingsExternalProviderPricePlaceholder:
+    "Ajoutez le prix pour le service de livraison d'un fournisseur externe",
 
   /****************************************************************
    *                Pages

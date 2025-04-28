@@ -404,6 +404,10 @@ export const TRANSLATION_IT = {
     'Errore durante il tentativo di aggiornare le impostazioni',
   systemSettingsSuccessUpdating:
     'Le impostazioni sono state aggiornate correttamente',
+  systemSettingsExternalProviderPrice:
+    'Prezzo di consegna per un fornitore esterno',
+  systemSettingsExternalProviderPricePlaceholder:
+    'Aggiungi il prezzo per il servizio di consegna di un fornitore esterno',
 
   /****************************************************************
    *                Pages

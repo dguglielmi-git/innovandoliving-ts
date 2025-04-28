@@ -406,6 +406,10 @@ export const TRANSLATION_NL = {
   systemSettingsUpdateButton: 'Bijwerken',
   systemSettingsErrorUpdating: 'Fout bij het updaten van Instellingen',
   systemSettingsSuccessUpdating: 'Instellingen zijn succesvol bijgewerkt',
+  systemSettingsExternalProviderPrice:
+    'Bezorgprijs voor een externe leverancier',
+  systemSettingsExternalProviderPricePlaceholder:
+    'Voeg de prijs toe voor de bezorgdienst van een externe leverancier',
 
   /****************************************************************
    *                Pages

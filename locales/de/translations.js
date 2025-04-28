@@ -414,6 +414,10 @@ export const TRANSLATION_DE = {
     'Fehler beim Versuch, die Einstellungen zu aktualisieren',
   systemSettingsSuccessUpdating:
     'Die Einstellungen wurden erfolgreich aktualisiert',
+  systemSettingsExternalProviderPrice:
+    'Lieferpreis für einen externen Anbieter',
+  systemSettingsExternalProviderPricePlaceholder:
+    'Fügen Sie den Preis für den Lieferservice eines externen Anbieters hinzu',
 
   /****************************************************************
    *                Pages
