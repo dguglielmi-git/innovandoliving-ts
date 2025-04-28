@@ -183,7 +183,7 @@ const Products = ({
               id={product._id || product.title}
               productImage={product.url}
               title={product.title}
-              category={product.platform.title}
+              category={product?.platform?.title}
               price={product.price.$numberDecimal}
               remove={() => removeRow(product._id ?? '')}
             />
