@@ -3,7 +3,7 @@ import { Divider } from 'semantic-ui-react'
 import { useTranslation } from 'react-i18next'
 import useMsgs from '../../../../hooks/useMsgs'
 import { verifyUserType } from '../../../../utils/util'
-import ButtonBack from './OrderDetailContent/ButtonBack'
+import GoBackButton from '../../../Common/GoBackButton'
 import ProgressOrder from './OrderDetailContent/ProgressOrder'
 import OrderStatusLabel from './OrderDetailContent/OrderStatusLabel'
 import OrderDetailedTable from './OrderDetailContent/OrderDetailedTable'
@@ -35,7 +35,7 @@ export default function OrderDetails (props) {
 
   return (
     <div className='order-detail__mainbox'>
-      <ButtonBack goBack={goBack} label={t('orderDetailsBackButton')} />
+      <GoBackButton goBack={goBack} label={t('orderDetailsBackButton')} />
 
       <OrderStatusLabel order={order} />
 

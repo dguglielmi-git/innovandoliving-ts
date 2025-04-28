@@ -15,6 +15,7 @@ import { Icon, Button, Form } from 'semantic-ui-react';
 import * as Yup from 'yup';
 import { GalleryFiles, Product, ProductDTO } from '@/api/interface';
 import { useTranslation } from 'react-i18next';
+import GoBackButton from '@/components/Common/GoBackButton';
 
 export default function AddProduct() {
   const mainPictureReference = useRef<FileUpload>(null);
@@ -269,10 +270,18 @@ export default function AddProduct() {
 
   const formHasBeenModified = () => setFormModified(true);
 
+  const goBack = () => router.back();
+
   return (
     <BasicLayout className='queries' style={{ backgroundColor: '#F6F6F6' }}>
       <Form onSubmit={formik.handleSubmit}>
         <section className='product-management'>
+          <GoBackButton
+            goBack={goBack}
+            label={t('orderDetailsBackButton')}
+            classname='product-management__goback-button'
+          />
+
           <section className='product-management__header'>
             <AddEditProductHeader title={editionMode ? 'Edit the product' : 'Add a Product'} />
           </section>
