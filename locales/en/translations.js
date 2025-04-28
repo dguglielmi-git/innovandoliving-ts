@@ -403,6 +403,10 @@ export const TRANSLATION_EN = {
   systemSettingsUpdateButton: 'Update',
   systemSettingsErrorUpdating: 'Error when trying to update Settings',
   systemSettingsSuccessUpdating: 'Settings have been updated successfully',
+  systemSettingsExternalProviderPrice:
+    'Delivery Price for an External Provider',
+  systemSettingsExternalProviderPricePlaceholder:
+    'Add the price for the delivery service of an External Provider',
 
   /****************************************************************
    *                Pages
