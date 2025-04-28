@@ -410,6 +410,10 @@ export const TRANSLATION_ES = {
   systemSettingsErrorUpdating: 'Error al intentar actualizar la configuración',
   systemSettingsSuccessUpdating:
     'La configuración ha sido actualizada correctamente.',
+  systemSettingsExternalProviderPrice:
+    'Precio de entrega para un proveedor externo',
+  systemSettingsExternalProviderPricePlaceholder:
+    'Agrega el precio para el servicio de entrega de un proveedor externo',
 
   /****************************************************************
    *                Pages

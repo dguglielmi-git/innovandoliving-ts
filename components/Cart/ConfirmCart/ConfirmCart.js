@@ -41,7 +41,7 @@ export default function ConfirmCart (props) {
             setShippingPrice(calcShippingDelivery(configs, clientAddress))
             break
           case DELIVERY_OPTION_EXTERNAL_PROVIDER:
-            setShippingPrice(3200)
+            setShippingPrice(configs.external_provider_price?.$numberDecimal)
             break
           default:
             setShippingPrice(0)

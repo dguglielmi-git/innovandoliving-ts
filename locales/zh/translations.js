@@ -391,6 +391,9 @@ export const TRANSLATION_ZH = {
   systemSettingsUpdateButton: '更新',
   systemSettingsErrorUpdating: '嘗試更新設置時出錯',
   systemSettingsSuccessUpdating: '設置已成功更新',
+  systemSettingsExternalProviderPrice: '外部供应商的配送价格',
+  systemSettingsExternalProviderPricePlaceholder:
+    '添加外部供应商配送服务的价格',
 
   /****************************************************************
    *                Pages

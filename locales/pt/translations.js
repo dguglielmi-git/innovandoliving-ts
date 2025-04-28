@@ -403,6 +403,10 @@ export const TRANSLATION_PT = {
   systemSettingsErrorUpdating: 'Erro ao tentar atualizar as configurações',
   systemSettingsSuccessUpdating:
     'As configurações foram atualizadas com sucesso',
+  systemSettingsExternalProviderPrice:
+    'Preço de entrega para um fornecedor externo',
+  systemSettingsExternalProviderPricePlaceholder:
+    'Adicione o preço para o serviço de entrega de um fornecedor externo',
 
   /****************************************************************
    *                Pages
