@@ -227,7 +227,7 @@ export const TRANSLATION_ES = {
   progressOrderTitle: 'Progreso de la Orden',
 
   /* Orders - Comments */
-  commentsSupportContact: 'Contacto con Atención al cliente',
+  commentsSupportContact: 'Preguntas y respuestas sobre este producto',
   commentsHistory: 'Histórico de la comunicación con Atención al cliente',
   commentsNoMessages: '... no hay mensajes ...',
 

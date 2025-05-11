@@ -220,7 +220,7 @@ export const TRANSLATION_PT = {
   progressOrderTitle: `Ordem Progresso`,
 
   /* Orders - Comments */
-  commentsSupportContact: 'Entre em contato com o Departamento de Vendas',
+  commentsSupportContact: "Perguntas e respostas sobre este produto",
   commentsHistory: 'Histórico de comunicação com o Departamento de Vendas',
   commentsNoMessages: '... sem mensagens ...',
 
