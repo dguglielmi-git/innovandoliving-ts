@@ -222,7 +222,7 @@ export const TRANSLATION_FR = {
   progressOrderTitle: `Progression de la commande`,
 
   /* Orders - Comments */
-  commentsSupportContact: 'Prendre contact avec le service commercial',
+  commentsSupportContact: 'Questions et réponses sur ce produit',
   commentsHistory: 'Historique des communications avec le service des ventes',
   commentsNoMessages: '... pas de messages ...',
 

@@ -222,7 +222,7 @@ export const TRANSLATION_NL = {
   progressOrderTitle: `Bestelvoortgang`,
 
   /* Orders - Comments */
-  commentsSupportContact: 'Neem contact op met de afdeling Verkoop',
+  commentsSupportContact: "Vragen en antwoorden over dit product",
   commentsHistory: 'Geschiedenis van de communicatie met de verkoopafdeling',
   commentsNoMessages: '... geen berichten ...',
 

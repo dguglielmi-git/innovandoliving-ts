@@ -214,7 +214,7 @@ export const TRANSLATION_ZH = {
   progressOrderTitle: `訂單進度`,
 
   /* Orders - Comments */
-  commentsSupportContact: '聯繫銷售部',
+  commentsSupportContact: '关于此产品的问题与回答',
   commentsHistory: '與銷售部的溝通記錄',
   commentsNoMessages: '... 沒有消息 ...',
 
