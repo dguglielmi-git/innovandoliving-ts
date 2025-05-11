@@ -142,14 +142,14 @@ const Products = ({
 
   const paginatedProducts = useMemo(() => {
     return products?.slice(first, first + rows);
-  }, [first, products]);
+  }, [first, products, rows]);
 
   return (
     <section className='product-management__products'>
       <article className='product-management__products__title'>
         <h2 className='poppins-600-regular'>{t('pmProductTitle')}</h2>
       </article>
-      
+
       <section className='product-management__products__search'>
         <IconField iconPosition='left'>
           <InputIcon className='pi pi-search'> </InputIcon>
