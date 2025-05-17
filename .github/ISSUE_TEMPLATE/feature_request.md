@@ -1,7 +1,7 @@
 ---
 name: Feature request
 about: New feature or enhancement to work on this project
-title: ''
+title: Feature Template
 labels: ''
 assignees: ''
 
