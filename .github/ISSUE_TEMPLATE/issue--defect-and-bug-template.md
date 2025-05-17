@@ -1,5 +1,5 @@
 ---
-name: Issue Template
+name: Issue, Defect and Bug Template
 about: Ticket for solve any issue, problem or something that need corrections
 title: Issue Template
 labels: ''

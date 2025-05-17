@@ -1,5 +1,5 @@
 ---
-name: Feature request
+name: New Feature or Enhancement
 about: New feature or enhancement to work on this project
 title: Feature Template
 labels: ''
