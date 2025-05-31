@@ -123,9 +123,8 @@ export async function removeItemCart (idItemCart, logout) {
 export async function countProductsCart () {
   const cart = await getCart()
 
-  if (!cart) {
-    return 0
-  } else {
+  if (Array.isArray(cart)) {
     return cart.reduce((sum, prod) => sum + prod.quantity, 0)
   }
+  return 0
 }
