@@ -1,70 +1,77 @@
-import { getToken, hasExpiredToken } from "../api/token";
+import { getToken, hasExpiredToken } from '../api/token'
 
-export async function authFetch(url, params, logout) {
-  const token = getToken();
+export async function authFetch (url, params, logout) {
+  const token = getToken()
   if (!token) {
-    logout();
+    logout()
   } else {
     if (hasExpiredToken(token)) {
-      logout();
+      logout()
     } else {
       const paramsTemp = {
         ...params,
         headers: {
           ...params?.headers,
           'Access-Control-Allow-Origin': '*',
-          Authorization: `Bearer ${token}`,
-        },
-      };
+          Authorization: `Bearer ${token}`
+        }
+      }
       try {
-        const response = await fetchRetryParams(url, paramsTemp);
-        return await response.json();
+        const response = await fetchRetryParams(url, paramsTemp)
+        return await response.json()
       } catch (error) {
-        console.log(error);
-        return error;
+        console.log(error)
+        return error
       }
     }
   }
 }
 
-function wait(delay) {
-  return new Promise((resolve) => setTimeout(resolve, delay));
+function wait (delay) {
+  return new Promise(resolve => setTimeout(resolve, delay))
 }
 
-export function fetchRetry(
+export function fetchRetry (
   url,
   tries = process.env.NEXT_PUBLIC_RETRY_QUERY_ATTEMPTS
 ) {
-  function onError(err) {
-    console.log("Retrying fetch...");
-    let triesLeft = tries - 1;
+  function onError (err) {
+    console.log('Retrying fetch...')
+    let triesLeft = tries - 1
     if (!triesLeft) {
-      return new Response(JSON.stringify({}), { status: 200 });
+      return new Response(JSON.stringify({}), { status: 200 })
     }
     return wait(process.env.NEXT_PUBLIC_DELAY_RETRY_FETCH).then(() =>
       fetchRetry(url, triesLeft)
-    );
+    )
   }
-  return fetch(url).catch(onError);
+  return fetch(url).catch(onError)
 }
 
 export function fetchRetryParams(
   url,
   params,
-  tries = process.env.NEXT_PUBLIC_RETRY_QUERY_ATTEMPTS
+  tries = Number(process.env.NEXT_PUBLIC_RETRY_QUERY_ATTEMPTS)
 ) {
   function onError(err) {
-    console.log("Retrying fetchRetryParams...");
-    console.log('url:'+url)
-    console.log(err)
-    
-    let triesLeft = tries - 1;
-    if (!triesLeft) {
+    console.log('Retrying fetchRetryParams...');
+    console.log('url:' + url);
+    console.log(err);
+
+    const delay = Number(process.env.NEXT_PUBLIC_DELAY_RETRY_FETCH) || 1000;
+    if (tries === -1) {
+      return wait(delay).then(() => fetchRetryParams(url, params, tries));
+    }
+
+    const triesLeft = tries - 1;
+
+    if (triesLeft <= 0) {
       return new Response(JSON.stringify({}), { status: 200 });
     }
-    return wait(process.env.NEXT_PUBLIC_DELAY_RETRY_FETCH).then(() =>
-      fetchRetryParams(url, params, triesLeft)
-    );
+
+    return wait(delay).then(() => fetchRetryParams(url, params, triesLeft));
   }
+
   return fetch(url, params).catch(onError);
 }
+
